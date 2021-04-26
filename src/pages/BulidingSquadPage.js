@@ -6,6 +6,7 @@ class BulidingSquadPage extends Component {
       return (
           <div>
             <FantasyHeader></FantasyHeader>
+            <h2>haha</h2>
             
           </div>
       );
