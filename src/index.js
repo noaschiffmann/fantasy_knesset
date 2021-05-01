@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import HakProfilePage from './pages/HakProfilePage';
 import MainPage from './pages/MainPage';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
     <MainPage />
+    // <HakProfilePage />
   ,document.getElementById('root')
 );
 
