@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import FantasyHeader from '../components/FantasyHeader'
+import Tabs from '../components/Tabs';
 
 class MainPage extends Component {
     render() {
       return (
           <div>
-            <FantasyHeader></FantasyHeader>
-            
+            <Tabs></Tabs>
           </div>
       );
     }

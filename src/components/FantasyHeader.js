@@ -1,9 +1,12 @@
 import React from 'react';
+import './FantasyHeader.css';
+import 'tachyons';
+
 
 const FantasyHeader = () =>{
     return(
-        <div className = 'tc'>
-            <h1>Fantasy Knesset Component</h1>
+        <div className = 'rc'>
+            <h1> FANTASY KNESSET </h1>
         </div>
     );
 }

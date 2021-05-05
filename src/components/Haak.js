@@ -1,13 +1,17 @@
 import React from 'react';
+import 'tachyons';
+import '../pages/HomeTab.css';
 
-const Haak = ({name,party,id,points}) =>{
+const Haak = ({name,party,id,points,personalid, status}) =>{
     return(
-        <div className = 'tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5'> 
-            <img alt = 'AllHaaks' src={'https://robohash.org//{id}?200x200'} />
+        <div className = 'card tc bg-blue br3 pa3 ma2 dib bw2 grow shadow-5 '> 
+            <img alt='AllHaaks' src={`https://fs.knesset.gov.il/globaldocs/MK/${personalid}.png?v=20210430_43917?200x200`} height="175" width="150"> 
+            </img>
             <div>
                 <h2>{name}</h2>
                 <p>{party}</p>
                 <p>{points}</p>
+                <p>{status}</p>
             </div>
         </div>
     );

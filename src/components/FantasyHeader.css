@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    src: href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet";
+    }
+
+div{
+    align-Items: 'center';
+    align-content: center;
+    text-align: 'center';
+}
+h1 {
+    font-family: 'SEGA LOGO FONT';
+    font-weight: 100;
+    color: #c4ccdf;
+    justify-Content: 'center';
+    text-align: 'center';
+    background-color: #144569;
+    background-position: initial;
+}

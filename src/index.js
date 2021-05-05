@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import MainPage from './pages/MainPage';
+import Main from './components/Main';
 import reportWebVitals from './reportWebVitals';
+import 'tachyons';
+
 
 ReactDOM.render(
-    <MainPage />
+    <Main/>
   ,document.getElementById('root')
 );
 
