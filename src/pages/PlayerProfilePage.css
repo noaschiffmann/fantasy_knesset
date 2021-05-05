@@ -1,0 +1,59 @@
+
+
+
+@font-face {
+    font-family: 'SEGA LOGO FONT';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SEGA LOGO FONT'), url('SEGA.woff') format('woff');
+    }
+
+
+body {
+    background: rgb(245, 244, 244);
+    font-family: 'Varela Round', sans-serif;
+    }
+
+
+table {
+    width: 100%;
+    border:0px solid transparent;
+    border-collapse: collapse;
+}
+
+
+
+Table {
+    width: 100%;
+}
+
+TableBody {
+    width: 100%;
+}
+
+TableRow {
+    width: 100%;
+}
+
+tr {
+    width: 100%;
+    position: absolute;
+}
+
+
+h2 {
+    font-family: 'SEGA LOGO FONT';
+    font-weight: 200;
+    font-size: xxx-large;
+    color: rgb(117, 0, 117);
+}
+
+p {
+    font-family: fantasy;
+    font-size: xxx-large;
+    color: #474747;
+}
+
+
+
+
