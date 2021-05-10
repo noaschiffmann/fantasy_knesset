@@ -1,24 +1,17 @@
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { React, useState } from 'react';
+import { makeStyles, Card, CardActionArea, CardContent, Button, Typography, Popover } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import Fab from '@material-ui/core/Fab';
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import TimelineIcon from '@material-ui/icons/Timeline';
+import { Line } from 'react-chartjs-2';
+import  Overlay  from 'react-overlay-component';
+import Hak from '../components/Hak';
 
 import data from '../important/data.json';
 
-// import { I18nManager } from 'react-native';
-
 const useStyles = makeStyles((theme)=> ({
   root: {
-    maxWidth: 345,
-  },
-  infoIcon: {
-    marginRight: theme.spacing(1),
+    maxWidth: 355,
   },
   photo: {
     height: 175,
@@ -29,58 +22,130 @@ const useStyles = makeStyles((theme)=> ({
     height: 20,
     paddingRight: 8,
   },
-  cancel: {
-    position:"absolute", 
-    color: "#a5a5a5",
-    right:-15,
+  button: {
+    width: 20,
+    flex: 1,
+    marginRight: 40,
+  },
+  popover: {
+    pointerEvents: 'none',
   },
 }));
 
-function HakStatus(isUp){
-  switch(isUp){
-    case true: return (<div>&#128314;</div>);
-    case false: return (<div>🔻</div>);
-  }
-};
+const HakProfile = ({id}) => {
 
-export default function HakProfile({id=1}) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [popText, setPopText] = useState(null);
+
+  const handlePopoverOpen = (event, text) => {
+    setAnchorEl(event.currentTarget);
+    setPopText(text);
+  };
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
+
+  const [isOpen, setOverlay] = useState(false);
+  const closeOverlay = () => setOverlay(false);
+  const configs = {
+      animate: true,
+  };
 
   const classes = useStyles();
 
   return (
+    
     <Card className={classes.root}>
+      <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
+      </head>
       <CardActionArea>
-        <img className={classes.photo} alt={data[id].name} src={data[id].image}/>
-        <Button className={classes.cancel}><CancelOutlinedIcon /></Button>
+        <div align="center"><Hak id={id} /></div>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" align="center" style={{fontWeight: "bold", color:"#004dcf"}}>
-          <Fab align="left">{HakStatus(false)} {data[id].points}</Fab> {data[id].name} 
-          </Typography>
-
           <hr></hr>
-          <Typography gutterBottom variant="h6" component="h2" align="center">
+          <Typography style={{fontFamily: 'Varela Round'}} gutterBottom variant="h6" component="h2" align="center">
             <img className={classes.logo} alt="logo" src={data[id].party_logo}/>
             :מפלגה
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" align="center">
+          <Typography style={{fontFamily: 'Varela Round'}} variant="body2" color="textSecondary" component="p" align="right">
             {data[id].summary}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <Button variant="contained" color="primary" disabled={false}>
+
+      <Button 
+          aria-owns={open ? 'mouse-over-popover' : undefined}
+          aria-haspopup="true"
+          onMouseEnter={(event)=>handlePopoverOpen(event, " למידע נוסף ") }
+          onMouseLeave={handlePopoverClose}
+          className={classes.button}
+          variant="contained" color="primary"
+          onClick={()=> window.open("https://m.knesset.gov.il/mk/Pages/MKPersonalDetails.aspx?MKID="+ data[id].url_id )}>
+        <InfoOutlinedIcon />
+        <Popover 
+                id="mouse-over-popover" open={open} anchorEl={anchorEl}
+                className={classes.popover}
+                anchorOrigin={{vertical: 'bottom', horizontal:'left'}} 
+                onClose={handlePopoverClose} disableRestoreFocus>
+                <Typography>{popText}</Typography>
+        </Popover> 
+      </Button>
+
+      <Button
+            onMouseEnter={(event)=>handlePopoverOpen(event, " להוספת החכ ")}
+            onMouseLeave={handlePopoverClose} 
+            className={classes.button} 
+            variant="contained" color="primary" disabled={true} onClick={''}>
         <AddIcon />
       </Button>
-      <div style={{float: "right"}}>
-        <Button
-            variant="contained" color="primary"
-            onClick={()=> window.open("https://m.knesset.gov.il/mk/Pages/MKPersonalDetails.aspx?MKID="+ data[id].url_id )}>
-          <InfoOutlinedIcon className={classes.infoIcon}/>  למידע נוסף לחץ כאן
-        </Button>
-      </div>
+
+      <Button 
+          onMouseEnter={(event)=>handlePopoverOpen(event, " סטטיסטיקה ")}
+          onMouseLeave={handlePopoverClose}
+          className={classes.button}
+          variant="contained" color="primary"
+          onClick={() => setOverlay(true)}>
+        <TimelineIcon />
+      </Button>
+      <Overlay configs={configs} isOpen={isOpen} closeOverlay={closeOverlay}>
+        <div style={{height:200,width:450}}>
+          <Line
+                data={{ labels:['A','B','C','D','E'],
+                        datasets: [ {
+                            label: "points",
+                            fill: true,
+                            lineTension: 0.5,
+                            backgroundColor: 'rgba(75,192,192,1)',
+                            borderColor: 'rgba(0,0,0,1)',
+                            borderWidth: 2,
+                            data: data[id].points
+                          }]}}
+                options={{
+                  title:{
+                    display:true,
+                    text:'Points',
+                    fontSize:20,
+                    color: 'black'
+                  },
+                  legend:{
+                    display: true,
+                    position: "right"
+                  }
+                }}
+              />
+            </div>
+            <Button
+                onClick={()=> setOverlay(false)} 
+                className="danger">
+            </Button>
+          </Overlay>
+
+
     </Card>
   );
 }
 
 
-
-
+export default HakProfile;

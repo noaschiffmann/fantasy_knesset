@@ -2,11 +2,12 @@ import React from 'react';
 
 const SearchBox = ({searchfiled, searchChange}) => {
     return (
-        <div className = 'pa2'>
+        <div>
             <input
-            className = 'pa3 ba b--green bg-lightest-blue' 
+            className = 'tc pa2' 
             type = 'search' 
-            placeholder = 'Search Haak' 
+            style={{direction:'rtl'}}
+            placeholder = 'חיפוש ח"כ' 
             onChange = {searchChange}
             />
         </div>

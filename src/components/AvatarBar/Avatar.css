@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+.overlap {
+    position: relative;
+}
+
+.avatar {
+
+    box-sizing: border-box;
+    border: 3px solid rgb(245, 244, 244);
+}
+
+h1 {
+    color: white;
+    font-weight: bold;
+    font-family: 'Varela Round';
+}
+
+table {
+    width: 100%;
+    border:0px transparent;
+    border-collapse: collapse;
+}
+
+tr, td, th
+{
+    border:0px solid transparent;
+    border-collapse: collapse;
+}

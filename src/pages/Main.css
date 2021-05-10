@@ -1,0 +1,38 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+body {
+    background-color: #F7F7F7;
+    padding-top: 20px;
+    padding-left: 30px;
+    margin: 10px;
+  }
+  h1, h2, p, ul, li {
+    font-family: 'Varela Round';
+  }
+  ul.header li {
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    font: 1.1em sans-serif;
+    font-family: 'Varela Round';
+  }
+  ul.header {
+    background-image: url("../important/topBarPic.png"); 
+    height: 295px;
+    margin-top: -145px;
+    font-family: 'Varela Round';
+  }
+  ul.header li a {
+    color: #144569;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px;
+    margin-top: 231.67px;
+    display: inline-block;
+    font-family: 'Varela Round';
+  }
+  .content {
+    background-color: #F7F7F7;
+    padding: 20px;
+  }

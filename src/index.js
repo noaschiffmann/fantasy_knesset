@@ -4,10 +4,13 @@ import './index.css';
 import HakProfilePage from './pages/HakProfilePage';
 import MainPage from './pages/MainPage';
 import reportWebVitals from './reportWebVitals';
+import SignUpForm from './pages/SignUpForm';
+import Main from './pages/Main';
+import NoTeamPage from './pages/NoTeamPage';
 
 ReactDOM.render(
-    <MainPage />
-    // <HakProfilePage />
+    <Main/>
+    // <NoTeamPage />
   ,document.getElementById('root')
 );
 
