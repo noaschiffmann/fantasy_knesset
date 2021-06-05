@@ -8,7 +8,7 @@ import HakProfilePage from './HakProfilePage';
 
 
 const MeliaaPage = () => {
-  const [searchField,setSearchField]= useState('');
+  const [searchField, setSearchField] = useState("");
 
     function onSearchChange(event){
       setSearchField(event.target.value);
@@ -38,8 +38,8 @@ const MeliaaPage = () => {
         {filteredHaaks.map((item, index) => {
                   return(
                     <row >
-                    <Button  onClick={() => handleClick(item.id)}>
-                    <Hak id={item.id} flag = {false}  />
+                    <Button onClick={() => handleClick(item.id)}>
+                      <Hak id={item.id} flag = {false}  />
                     </Button>
                     </row>
                     );

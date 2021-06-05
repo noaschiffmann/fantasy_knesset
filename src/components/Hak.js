@@ -48,6 +48,7 @@ const useStyles = makeStyles(() => ({
   
   export const Hak = React.memo(function GalaxyCard({id, flag}) {
     const mediaStyles = useCoverCardMediaStyles({ bgPosition: 'top'});
+    flag = false;
     const styles = useStyles();
     return (
       <>
@@ -62,13 +63,12 @@ const useStyles = makeStyles(() => ({
         <Card className={styles.card}>
           <CardMedia
             classes={mediaStyles}
-            image={data[id].image}
+            image = {data[id].image}
           />
           {flag ? (
             <Avatar alt='coin' name = {data[id].coins} style={{height:'28px', width:'28px', backgroundImage: `url(${coin})`, backgroundSize: 'cover', backgroundPosition: 'center', 
-                                                              color: '#181827', fontFamily: 'Varela Round', fontSize: 'small', fontWeight: 'bold'}}>{data[id].coins}</Avatar>
-          ): null 
-          }
+                                                              color: '#181827', fontFamily: 'Varela Round', fontSize: 'small', fontWeight: 'bold'}}>{data[id].coins}</Avatar>) : 
+            null }
           <Box pb={1} px={1} className={styles.content}>
             <h1 style={{ color: 'white', fontSize: 13 }}>{data[id].name}</h1>
             <h2 style={{ color: 'white', fontSize: 11 , direction: 'rtl'}}>{data[id].party} | {data[id].points[data[id].points.length-1]} נק'</h2>

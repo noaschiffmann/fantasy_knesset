@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PlayerProfilePage from "./PlayerProfilePage";
 import HomeTab from "./HomeTab";
 import LeaguesPage from "./LeaguesPage";
-import KnessetWalkThroughPage from "./KnessetWalkThroughPage";
-import "./Main.css";
+import KnessetWalkThroughPage from "./KnessetWalkthroughPage";
+// import "./Main.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NoTeamPage from "./NoTeamPage";
 import { Button, AppBar, Toolbar, makeStyles } from '@material-ui/core';
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const Main = () => {
   const classes = useStyles();
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(4);
   
   function switchPage(page){
     switch(page){
@@ -48,9 +48,7 @@ const Main = () => {
          return <Squad onAcceptTeam = {()=>setPage(6)} />
       case(6):
         return <PlayerProfilePage />
-
     }
-      
 }
 
     return (
@@ -60,7 +58,7 @@ const Main = () => {
               <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
           </head>
 
-          <div style={{ position:'static' }}>
+          {/* <div style={{ position:'static' }}>
             <AppBar color="#F7F7F7" style={{height:190, width:"100%", backgroundSize:'cover', backgroundImage: `url(${topBarPic})` }}>
               <Toolbar style={{ direction: "rtl" }}>
                 <Button variant="contained" className={classes.tab} onClick={()=>setPage(1)}>דף הבית</Button>
@@ -78,11 +76,11 @@ const Main = () => {
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
+            <br></br> */}
             <div>
-            {switchPage(page)}
+              {switchPage(page)}
             </div>
-            <div style={{height:60, width:"100%",}}>
+            {/* <div style={{height:60, width:"100%",}}>
               <AppBar color="#F7F7F7" style={{ position:'static',  backgroundSize:'strech', backgroundImage: `url(${bottom})` }}>
                 <Toolbar>
                   <Button size="small" className={classes.bottomButtons}>מדיניות האתר</Button>
@@ -90,7 +88,7 @@ const Main = () => {
                   <Button size="small" className={classes.bottomButtons}>הגדרות</Button>
                 </Toolbar>
               </AppBar>
-            </div>
+            </div> */}
         </div>
 
     );

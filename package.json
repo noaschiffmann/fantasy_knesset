@@ -18,6 +18,7 @@
     "react-curved-arrow": "^0.1.0",
     "react-dom": "^17.0.2",
     "react-google-font-loader": "^1.1.0",
+    "react-material-ui-keyboard": "^6.2.1",
     "react-native": "^0.64.1",
     "react-native-elements": "^3.4.1",
     "react-overlay-component": "^1.0.2",

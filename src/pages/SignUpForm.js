@@ -1,8 +1,7 @@
 import {React} from 'react';
 import { Button, CssBaseline, TextField, Link, Grid, Box, Typography, makeStyles, Container } from '@material-ui/core';
 import Logo from '../important/logo.png';
-import { Route, NavLink } from 'react-router-dom';
-import Squad from './Squad';
+
 
 
 function Copyright() {
@@ -43,11 +42,15 @@ export default function SignIn(props) {
       </head>
       <CssBaseline />
       <div className={classes.paper}>
-          <img alt="logo" src={Logo} style={{width:200, height:200}}></img>
+          <img alt="logo" src={Logo} style={{width:"70%", height:"70%"}}></img>
         <Typography component="h1" variant="h5" style={{fontFamily: "Varela Round"}}> 
           יצירת פרופיל
         </Typography>
+
         <form className={classes.form} noValidate>
+
+          
+
           <TextField
             variant="outlined"
             margin="normal"
@@ -66,7 +69,7 @@ export default function SignIn(props) {
             required
             style={{ direction: "rtl", fontFamily: "Varela Round" }}
             fullWidth
-            id="email"
+            id="username"
             label="שם משתמש"
             name="username"
             autoComplete="userName"
@@ -106,7 +109,7 @@ export default function SignIn(props) {
               צור פרופיל
           </Button>
         
-          <Grid container>
+          <Grid container align="center">
             <Grid item xs>
               <Link href="#" variant="body2">
                 שכחתי סיסמה 

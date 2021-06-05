@@ -8,14 +8,14 @@ import Chart from "../components/LeaderBoard/Chart";
 import green from "../important/Green Arrow.png";
 import red from "../important/Red Arrow.png"
 import HakProfilePage from './HakProfilePage';
-import {makeStyles} from '@material-ui/core';
+// import {makeStyles} from '@material-ui/core';
 import '../components/overlay.css';
 
 
 const HomeTab=()=> {
   
   function bestHaks(){
-    return [0, 3, 2]
+    return [10, 53, 22]
   }
   function upHaks(){
     return [2, 4]

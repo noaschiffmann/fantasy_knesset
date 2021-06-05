@@ -11,7 +11,7 @@ import data from '../important/data.json';
 
 const useStyles = makeStyles((theme)=> ({
   root: {
-    maxWidth: 355,
+    maxWidth: "100%",
   },
   photo: {
     height: 175,
@@ -23,9 +23,10 @@ const useStyles = makeStyles((theme)=> ({
     paddingRight: 8,
   },
   button: {
-    width: 20,
-    flex: 1,
-    marginRight: 40,
+    marginInline: "10%"
+    // width: 20,
+    // flex: 1,
+    // marginLeft: 40,
   },
   popover: {
     pointerEvents: 'none',
@@ -74,7 +75,7 @@ const HakProfile = ({id}) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-
+      
       <Button 
           aria-owns={open ? 'mouse-over-popover' : undefined}
           aria-haspopup="true"
@@ -92,16 +93,8 @@ const HakProfile = ({id}) => {
                 <Typography>{popText}</Typography>
         </Popover> 
       </Button>
-
-      <Button
-            onMouseEnter={(event)=>handlePopoverOpen(event, " להוספת החכ ")}
-            onMouseLeave={handlePopoverClose} 
-            className={classes.button} 
-            variant="contained" color="primary" disabled={true} onClick={''}>
-        <AddIcon />
-      </Button>
-
-      <Button 
+    
+      <Button    
           onMouseEnter={(event)=>handlePopoverOpen(event, " סטטיסטיקה ")}
           onMouseLeave={handlePopoverClose}
           className={classes.button}
@@ -109,8 +102,9 @@ const HakProfile = ({id}) => {
           onClick={() => setOverlay(true)}>
         <TimelineIcon />
       </Button>
+      
       <Overlay configs={configs} isOpen={isOpen} closeOverlay={closeOverlay}>
-        <div style={{height:200,width:450}}>
+        <div style={{height: 120, width: "300px"}}>
           <Line
                 data={{ labels:['A','B','C','D','E'],
                         datasets: [ {
@@ -141,8 +135,6 @@ const HakProfile = ({id}) => {
                 className="danger">
             </Button>
           </Overlay>
-
-
     </Card>
   );
 }
