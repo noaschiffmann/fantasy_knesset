@@ -3,13 +3,17 @@ import PlayerProfilePage from "./PlayerProfilePage";
 import HomeTab from "./HomeTab";
 import LeaguesPage from "./LeaguesPage";
 import KnessetWalkThroughPage from "./KnessetWalkthroughPage";
-// import "./Main.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NoTeamPage from "./NoTeamPage";
-import { Button, AppBar, Toolbar, makeStyles } from '@material-ui/core';
+import { Button, AppBar, Toolbar, makeStyles, BottomNavigationAction, BottomNavigation } from '@material-ui/core';
 import topBarPic from '../important/topBarPic.png';
-import bottom from '../important/bottom.png';
 import Squad from './Squad';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import EmojiEventsOutlinedIcon from '@material-ui/icons/EmojiEventsOutlined';
+import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
+import AccountBalanceOutlinedIcon from '@material-ui/icons/AccountBalanceOutlined';
+import './Main.css';
+
 
 const useStyles = makeStyles((theme) => ({
   tab: {
@@ -19,12 +23,18 @@ const useStyles = makeStyles((theme) => ({
     top:136,
     fontSize:18
   },
-  bottomButtons: {
-    fontFamily: "Varela Round",
-    color: "#F7F7F7",
-    marginRight: 15,
-    width: 96,
-
+  // bottomButtons: {
+  //   fontFamily: "Varela Round",
+  //   color: "#F7F7F7",
+  //   marginRight: 15,
+  //   width: 96,
+  // },
+  root: {
+    width:'100%',
+    position: 'sticky',
+    bottom: 0,
+    zIndex: 1000,
+    backgroundColor: "#144569",
   },
 
 }));
@@ -32,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
 const Main = () => {
   const classes = useStyles();
 
-  const [page, setPage] = useState(4);
+  const [page, setPage] = useState(2);
+
+  const [value, setValue] = React.useState(3);
   
   function switchPage(page){
     switch(page){
@@ -58,14 +70,14 @@ const Main = () => {
               <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
           </head>
 
-          {/* <div style={{ position:'static' }}>
+          <div style={{ position:'static' }}>
             <AppBar color="#F7F7F7" style={{height:190, width:"100%", backgroundSize:'cover', backgroundImage: `url(${topBarPic})` }}>
-              <Toolbar style={{ direction: "rtl" }}>
+              {/* <Toolbar style={{ direction: "rtl" }}>
                 <Button variant="contained" className={classes.tab} onClick={()=>setPage(1)}>דף הבית</Button>
                 <Button variant="contained" className={classes.tab} onClick={()=>setPage(2)}>הקבוצה שלי</Button>
                 <Button variant="contained" className={classes.tab} onClick={()=>setPage(3)}>ליגות</Button>
                 <Button variant="contained" className={classes.tab} onClick={()=>setPage(4)}>המליאה</Button>
-              </Toolbar>
+              </Toolbar> */}
             </AppBar>
             </div>
             <br></br>
@@ -76,10 +88,23 @@ const Main = () => {
             <br></br>
             <br></br>
             <br></br>
-            <br></br> */}
+            <br></br>
             <div>
               {switchPage(page)}
             </div>
+            <BottomNavigation
+              value={value}
+              onChange={(event, newValue) => {setValue(newValue);}}
+              showLabels
+              className={classes.root}
+            >
+              <BottomNavigationAction onClick={()=>setPage(4)} label="המליאה" icon={<AccountBalanceOutlinedIcon />} />
+              <BottomNavigationAction onClick={()=>setPage(3)} label="ליגות" icon={<EmojiEventsOutlinedIcon />} />
+              <BottomNavigationAction onClick={()=>setPage(2)} label="הקבוצה שלי" icon={<StarBorderOutlinedIcon />} />
+              <BottomNavigationAction onClick={()=>setPage(1)} label="דף הבית" icon={<HomeOutlinedIcon />} />
+            </BottomNavigation>
+
+
             {/* <div style={{height:60, width:"100%",}}>
               <AppBar color="#F7F7F7" style={{ position:'static',  backgroundSize:'strech', backgroundImage: `url(${bottom})` }}>
                 <Toolbar>

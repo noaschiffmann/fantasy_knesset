@@ -61,7 +61,7 @@ const NoTeamPage = (props) => {
                         <img className={classes.img} alt="complex" src={merav} />
                     </Grid>
                     <Grid item xs zeroMinWidth>
-                        <Typography style={{fontFamily: 'Varela Round'}}>  
+                        <Typography style={{direction:'rtl', fontFamily: 'Varela Round'}}>  
                             צור קבוצה המורכבת מ-6 חברי כנסת וצבור נקודות עבור הביצועים שלהם במציאות 
                         </Typography>
                     </Grid>
@@ -73,7 +73,7 @@ const NoTeamPage = (props) => {
                         <img className={classes.img} alt="complex" src={Tibi} />
                     </Grid>
                     <Grid item xs>
-                        <Typography style={{fontFamily: 'Varela Round'}}>
+                        <Typography style={{direction:'rtl', fontFamily: 'Varela Round'}}>
                         הצטרף לליגות, התחרה עם חברים וזכה בפרסים
                         </Typography>
                     </Grid>
@@ -85,7 +85,7 @@ const NoTeamPage = (props) => {
                         <img className={classes.img} alt="complex" src={BibiGantz} />
                     </Grid>
                     <Grid item xs>
-                        <Typography style={{fontFamily: 'Varela Round'}}>
+                        <Typography style={{direction:'rtl', fontFamily: 'Varela Round'}}>
                         עקוב אחרי חברי הכנסת המעניינים אותך וגלה עד כמה באמת הם עובדים עבורך
                         </Typography>
                     </Grid>

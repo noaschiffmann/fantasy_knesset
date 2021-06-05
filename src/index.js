@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import HakProfilePage from './pages/HakProfilePage';
+// import './index.css';
 import reportWebVitals from './reportWebVitals';
-import SignUpForm from './pages/SignUpForm';
 import Main from './pages/Main';
-import NoTeamPage from './pages/NoTeamPage';
+
 
 ReactDOM.render(
     <Main />
-    // <NoTeamPage />
   ,document.getElementById('root')
 );
 

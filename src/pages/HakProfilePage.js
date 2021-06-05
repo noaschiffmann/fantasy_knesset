@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
-import { makeStyles, Card, CardActionArea, CardContent, Button, Typography, Popover } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import { makeStyles, Card, CardActionArea, CardContent, Button, Typography } from '@material-ui/core';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import { Line } from 'react-chartjs-2';
@@ -35,18 +34,6 @@ const useStyles = makeStyles((theme)=> ({
 
 const HakProfile = ({id}) => {
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [popText, setPopText] = useState(null);
-
-  const handlePopoverOpen = (event, text) => {
-    setAnchorEl(event.currentTarget);
-    setPopText(text);
-  };
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-  const open = Boolean(anchorEl);
-
   const [isOpen, setOverlay] = useState(false);
   const closeOverlay = () => setOverlay(false);
   const configs = {
@@ -77,26 +64,13 @@ const HakProfile = ({id}) => {
       </CardActionArea>
       
       <Button 
-          aria-owns={open ? 'mouse-over-popover' : undefined}
-          aria-haspopup="true"
-          onMouseEnter={(event)=>handlePopoverOpen(event, " למידע נוסף ") }
-          onMouseLeave={handlePopoverClose}
           className={classes.button}
           variant="contained" color="primary"
           onClick={()=> window.open("https://m.knesset.gov.il/mk/Pages/MKPersonalDetails.aspx?MKID="+ data[id].url_id )}>
         <InfoOutlinedIcon />
-        <Popover 
-                id="mouse-over-popover" open={open} anchorEl={anchorEl}
-                className={classes.popover}
-                anchorOrigin={{vertical: 'bottom', horizontal:'left'}} 
-                onClose={handlePopoverClose} disableRestoreFocus>
-                <Typography>{popText}</Typography>
-        </Popover> 
       </Button>
     
       <Button    
-          onMouseEnter={(event)=>handlePopoverOpen(event, " סטטיסטיקה ")}
-          onMouseLeave={handlePopoverClose}
           className={classes.button}
           variant="contained" color="primary"
           onClick={() => setOverlay(true)}>
