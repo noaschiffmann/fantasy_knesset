@@ -5,37 +5,35 @@ import LeaguesPage from "./LeaguesPage";
 import KnessetWalkThroughPage from "./KnessetWalkthroughPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NoTeamPage from "./NoTeamPage";
-import { Button, AppBar, Toolbar, makeStyles, BottomNavigationAction, BottomNavigation } from '@material-ui/core';
+import { makeStyles, BottomNavigationAction, BottomNavigation } from '@material-ui/core';
 import topBarPic from '../important/topBarPic.png';
 import Squad from './Squad';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import EmojiEventsOutlinedIcon from '@material-ui/icons/EmojiEventsOutlined';
-import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
 import AccountBalanceOutlinedIcon from '@material-ui/icons/AccountBalanceOutlined';
 import './Main.css';
+import ChangeBar from '../components/ChangeBar.js';
 
 
 const useStyles = makeStyles((theme) => ({
-  tab: {
-    marginLeft: 10,
-    width: 133,
-    fontFamily: "Varela Round",
-    top:136,
-    fontSize:18
-  },
-  // bottomButtons: {
-  //   fontFamily: "Varela Round",
-  //   color: "#F7F7F7",
-  //   marginRight: 15,
-  //   width: 96,
-  // },
-  root: {
-    width:'100%',
+  bottomBar: {
+    width: '100%',
     position: 'sticky',
     bottom: 0,
     zIndex: 1000,
     backgroundColor: "#144569",
   },
+  topBar: {
+    width: '100%',
+    position: 'sticky',
+    top: 0,
+    zIndex: 1000,
+  },
+  img: {
+    width: 390,
+    height: 56
+  }
 
 }));
 
@@ -44,9 +42,10 @@ const Main = () => {
 
   const [page, setPage] = useState(2);
 
-  const [value, setValue] = React.useState(3);
+  const [value, setValue] = useState(3);
   
   function switchPage(page){
+    // eslint-disable-next-line default-case
     switch(page){
       case(1):
         return <HomeTab />
@@ -68,52 +67,27 @@ const Main = () => {
           <head>
               <link rel="preconnect" href="https://fonts.gstatic.com"/>
               <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
-          </head>
+          </head> 
 
-          <div style={{ position:'static' }}>
-            <AppBar color="#F7F7F7" style={{height:190, width:"100%", backgroundSize:'cover', backgroundImage: `url(${topBarPic})` }}>
-              {/* <Toolbar style={{ direction: "rtl" }}>
-                <Button variant="contained" className={classes.tab} onClick={()=>setPage(1)}>דף הבית</Button>
-                <Button variant="contained" className={classes.tab} onClick={()=>setPage(2)}>הקבוצה שלי</Button>
-                <Button variant="contained" className={classes.tab} onClick={()=>setPage(3)}>ליגות</Button>
-                <Button variant="contained" className={classes.tab} onClick={()=>setPage(4)}>המליאה</Button>
-              </Toolbar> */}
-            </AppBar>
-            </div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <div>
-              {switchPage(page)}
-            </div>
+          <div className={classes.topBar} style={{ width:"100%", position:'top' }}>
+            <img className={classes.img} alt="topBar" src={topBarPic}/>
+          </div>
+
+          <div>
+            <ChangeBar  /> 
+            {switchPage(page)}
+          </div>
             <BottomNavigation
               value={value}
               onChange={(event, newValue) => {setValue(newValue);}}
               showLabels
-              className={classes.root}
+              className={classes.bottomBar}
             >
               <BottomNavigationAction onClick={()=>setPage(4)} label="המליאה" icon={<AccountBalanceOutlinedIcon />} />
               <BottomNavigationAction onClick={()=>setPage(3)} label="ליגות" icon={<EmojiEventsOutlinedIcon />} />
-              <BottomNavigationAction onClick={()=>setPage(2)} label="הקבוצה שלי" icon={<StarBorderOutlinedIcon />} />
+              <BottomNavigationAction onClick={()=>setPage(2)} label="הקבוצה שלי" icon={<PersonPinIcon />} />
               <BottomNavigationAction onClick={()=>setPage(1)} label="דף הבית" icon={<HomeOutlinedIcon />} />
             </BottomNavigation>
-
-
-            {/* <div style={{height:60, width:"100%",}}>
-              <AppBar color="#F7F7F7" style={{ position:'static',  backgroundSize:'strech', backgroundImage: `url(${bottom})` }}>
-                <Toolbar>
-                  <Button size="small" className={classes.bottomButtons}>מדיניות האתר</Button>
-                  <Button size="small" className={classes.bottomButtons}>צור קשר</Button>
-                  <Button size="small" className={classes.bottomButtons}>הגדרות</Button>
-                </Toolbar>
-              </AppBar>
-            </div> */}
         </div>
 
     );

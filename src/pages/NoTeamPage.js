@@ -49,7 +49,7 @@ const NoTeamPage = (props) => {
    },[isOpen]);
     
     return (
-        <div style={{width:'96%',margin:"2%", backgroundColor:"#F7F7F7"}}>
+        <div style={{width:'96%', margin:"2%", backgroundColor:"#F7F7F7"}}>
             <head>
                 <link rel="preconnect" href="https://fonts.gstatic.com"/>
                 <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
@@ -60,7 +60,7 @@ const NoTeamPage = (props) => {
                     <Grid item>
                         <img className={classes.img} alt="complex" src={merav} />
                     </Grid>
-                    <Grid item xs zeroMinWidth>
+                    <Grid style={{margin:'2%'}} item xs zeroMinWidth>
                         <Typography style={{direction:'rtl', fontFamily: 'Varela Round'}}>  
                             צור קבוצה המורכבת מ-6 חברי כנסת וצבור נקודות עבור הביצועים שלהם במציאות 
                         </Typography>
