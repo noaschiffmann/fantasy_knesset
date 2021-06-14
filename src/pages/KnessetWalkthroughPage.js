@@ -30,8 +30,8 @@ const MeliaaPage = () => {
   return (
     <div className='tc'>
       <head>
-            <link rel="preconnect" href="https://fonts.gstatic.com"/>
-            <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
       </head>
       <SearchBar searchChange={onSearchChange}/>
         <Box style={{width:'90%', marginLeft: '5%', alignItems:'center'}}>
@@ -39,7 +39,7 @@ const MeliaaPage = () => {
                   return(
                     <row >
                     <Button onClick={() => handleClick(item.id)}>
-                      <Hak id={item.id} flag = {false}  />
+                      <Hak id={item.id} />
                     </Button>
                     </row>
                     );

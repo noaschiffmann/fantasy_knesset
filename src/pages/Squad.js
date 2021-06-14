@@ -1,35 +1,25 @@
-import React, { useState} from "react";
-import Hak  from "../components/Hak";
-import SearchBox from '../components/SearchBox';
+import React, { useState, useEffect } from "react";
 import SearchBar from '../components/SearchBar';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles, Grid, Button, CircularProgress, Card } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import clsx from 'clsx';
 import HakProfilePage from './HakProfilePage';
 import Overlay from 'react-overlay-component';
 import data from '../important/data.json';
-import Card from '@material-ui/core/Card';
 import Scroll from '../components/Scroll';
-
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import Hak from '../components/Hak'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    marginLeft: 90
+    // flexGrow: 1,
   },
   paper: {
-    position: 'relative',
-    height: 10,
-    width: 5, 
-    minWidth: 140,
-    minHeight: 180,
-    margin: 7,
+    // position: 'relative',
+    minWidth: 100,
+    minHeight: 120,
     borderRadius: 16,
-
   },
   control: {
     padding: theme.spacing(4),
@@ -37,125 +27,124 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     margin: theme.spacing(2, 0),
   },
-  
+  infoButton: {
+    position: 'absolute',
+    top: 2,
+    right: -15,
+    zIndex: 2
+  },
+  cancelButton: {
+    position: 'absolute',
+    zIndex: 2,
+    top: -4,
+    right: -19
+  }
 }));
 
 
 const Squad = (props)=> {
-    const classes = useStyles();
-    const [curHaaks, setCurHaaks] = useState(JSON.parse(JSON.stringify(data)));  
-    const card = <Card className={classes.paper} elevation={3}/>
-    const [picked,setPicked] = useState([{id:0 ,elem:card}, {id:1 ,elem:card}, {id:2 ,elem:card} , {id:3 ,elem:card},{id:4 ,elem:card},{id:5 ,elem:card}]);
-    const [numPicked, setNumPicked] = useState(0);
-    const [coins, setCoins] = useState(60);
-    
-    function addHak(id){
-      if(numPicked < 6){
-        picked[numPicked].elem = 
-        // <Card className={classes.paper} elevation={3}>
-        //     <CardHeader action={
-        //   <IconButton aria-label="settings">
-        //     <HighlightOffIcon />
-        //   </IconButton>
-        //   } style={{backgroundSize: 'cover', backgroundPosition: 'center', background:<Haak id={id} flag = {true}/>
-        // }}/>
-          <Hak id={id} flag = {true}/>
-        //   </Card>;
-          setNumPicked(numPicked+1);
-          setCoins(coins-data[id].coins);
-        var index = curHaaks.findIndex(function(item,i){
-          return item.id === id
-        });
-        curHaaks[index].id = -1;
-      }
-    }
-
-    const [spacing, setSpacing] = React.useState(2);
-    const [isOpen, setOverlay] = useState(false);
-    const closeOverlay = () => setOverlay(false);
-    const configs = {
-      animate: true,
-    };
-    const [id, setId] = useState(0);
-
-    function handleClick(id){
-      setOverlay(true);
-      setId(id);
-    }
-
-    const [searchField,setSearchField]= useState('');
-
-    function onSearchChange(event){
-      setSearchField(event.target.value);
-    }
-    const filteredHaaks = curHaaks.filter(data => {
-      return data.name.includes(searchField)});
-    
-    return(
-      <div class="container-fluid" style={{backgroundColor:"#F7F7F7"}}>
-        <div class="row">
-          <div class="col-md-12" align="center">
-            <h1 style={{fontSize: 30, marginTop:-20, color: 'black'}}>🐣 אפרוחי בית זית 🐣</h1>
-            <Button variant="outlined" size="medium" color="default" align="center" style={{ marginTop:8, fontFamily: "Varela Round", width: 155, fontSize: "14px"}}>
-              מנדטים שנותרו: {coins}  
+  const classes = useStyles();
+  const [curHaaks, setCurHaaks] = useState(JSON.parse(JSON.stringify(data)));  
+  const card = <Card className={classes.paper} elevation={3}/>
+  const [picked, setPicked] = useState([{id:0, elem:card}, {id:1, elem:card}, {id:2, elem:card}, {id:3, elem:card}, {id:4, elem:card}, {id:5, elem:card}]);
+  const [numPicked, setNumPicked] = useState(0);
+  
+  function addHak(id){
+    if(numPicked < 6){
+      picked[numPicked].elem = 
+        <Button style={{padding: '0px 0px'}}>
+          <Button color='secondary' className={classes.cancelButton} onClick={()=>handleCancel(numPicked)}>
+            <HighlightOffIcon /> 
           </Button>
-          </div>
-        </div>
+          <Hak id={id} /> 
+        </Button>
+      setNumPicked(numPicked+1);
+      // delete the selected Hak from the list of not selected Haks
+      var index = curHaaks.findIndex(function(item, i){
+        return item.id === id
+      });
+      curHaaks[index].id = -1;
+    }
+  }
+
+  function handleCancel(index){
+    // for()
+    picked[index].elem = card;
+    setNumPicked(numPicked - 1);
+
+  }
+
+  const [isOpen, setOverlay] = useState(false);
+  const closeOverlay = () => setOverlay(false);
+  const configs = {
+    animate: true,
+  };
+  const [id, setId] = useState(0);
+
+  function handleClick(id){
+    setOverlay(true);
+    setId(id);
+  }
+
+  const [searchField, setSearchField]= useState('');
+
+  function onSearchChange(event){
+    setSearchField(event.target.value);
+  }
+  const filteredHaaks = curHaaks.filter(data => {
+    return data.name.includes(searchField)
+  });
+
+  function handleInfo(event, id){
+    event.stopPropagation();
+    handleClick(id)
+  }
+  
+
+  
+  return(
+    <div class="container-fluid">
         <br></br>
-
-        <div class="col-md-10">
-          <Grid container className={classes.root} spacing={2} >
-              <Grid container justify="center" spacing={spacing}>
-
+          <h2 style={{color:"black"}} align="center">🐣 אפרוחי בית זית 🐣</h2>
+        <Grid container className={classes.root} spacing={1}>
+            <Grid container justify="center" spacing={2}>
               {picked.map((value) => (
-                  <Grid key={value.id} item>
-                  {value.elem}
+                  <Grid item>
+                    {value.elem}                   
                   </Grid>
-                    ))}
-                </Grid>
-            </Grid>
-                
-          </div>
-      &nbsp;
-      <div align="center">
-        <div align="left">
-        {AcceptGroupButton(props)}</div>
-        <SearchBar searchChange={onSearchChange} />
-      </div>
-      
-      <hr></hr>
-      
-      <Scroll>
+                ))}
+              </Grid>
+          </Grid>
 
-        <div class = "row" style={{marginRight:'5%', marginLeft:'5%'}}>
-            
-          <div className = "characters" class = "col-md-12" >     
-              {filteredHaaks.map((item, index) => {
-                if (item.id !== -1){
-                  return(
-                    <row >
-                    <Button  onClick={() => addHak(item.id)}>
-                    <Hak id={item.id} flag = {true}  />
-                    </Button>
-                    </row>
-                  
-                  );
-
-                }
-                  })
-              }           
-              <Overlay configs={configs} isOpen={isOpen} closeOverlay={closeOverlay}>
-                <HakProfilePage id={id} />
-              </Overlay>                   
-        </div>
-      </div>
-      </Scroll>
+    <br></br>
+    <div align="center">
+      {AcceptGroupButton(props)}
+      <SearchBar searchChange={onSearchChange} />
     </div>
-
-    );
-
+  
+    <hr></hr>
+    
+    <Scroll>
+      {filteredHaaks.map((item, index) => {
+        if (item.id !== -1){
+          return(
+             <Button style={{padding: '6px 4px'}} onClick={() => addHak(item.id)}>
+              <Button color='primary' className={classes.infoButton} onClick={(event)=>handleInfo(event, item.id)}> <InfoOutlinedIcon /> </Button>
+              <Hak id={item.id} />
+             </Button> 
+          );
+        }
+      })}           
+      <Overlay configs={configs} isOpen={isOpen} closeOverlay={closeOverlay}>
+        <HakProfilePage id={id} />
+      </Overlay>                   
+    </Scroll>
+  </div>
+  );
 }
+
 export default Squad;
+
 
 function AcceptGroupButton (props) {
   const classes = makeStyles((theme) => ({
@@ -195,41 +184,41 @@ function AcceptGroupButton (props) {
       [classes.buttonSuccess]: success,
     });
 
-    React.useEffect(() => {
+    useEffect(() => {
       return () => {
         clearTimeout(timer.current);
       };
     }, []);
 
-    const handleButtonClick = () => {
-      // if (!loading) {
-      //   setSuccess(false);
-      //   setLoading(true);
-      //   timer.current = window.setTimeout(() => {
-      //     setSuccess(true);
-      //     setLoading(false);
-      //   }, 2000);
-      // }
-      props.onAcceptTeam();
-    };
+  const handleButtonClick = () => {
+    // if (!loading) {
+    //   setSuccess(false);
+    //   setLoading(true);
+    //   timer.current = window.setTimeout(() => {
+    //     setSuccess(true);
+    //     setLoading(false);
+    //   }, 2000);
+    // }
+    props.onAcceptTeam();
+  };
 
-    return (
-      <div className={classes.root}>
-        <div className={classes.wrapper}>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={buttonClassname}
-            disabled={loading}
-            onClick={handleButtonClick}
-            style={{width:155, fontFamily: "Varela Round"}}
-          >
-            אישור קבוצה
-          </Button>
-          {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
-        </div>
+  return (
+    <div className={classes.root}>
+      <div className={classes.wrapper}>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={buttonClassname}
+          disabled={loading}
+          onClick={handleButtonClick}
+          style={{width:155, fontFamily: "Varela Round"}}
+        >
+          אישור קבוצה
+        </Button>
+        {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 

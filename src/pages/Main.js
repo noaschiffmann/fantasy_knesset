@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1000,
   },
   img: {
-    width: 390,
+    width: '100%',
     height: 56
   }
 
@@ -39,9 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Main = () => {
   const classes = useStyles();
-
-  const [page, setPage] = useState(2);
-
+  const [page, setPage] = useState(5);
   const [value, setValue] = useState(3);
   
   function switchPage(page){
@@ -73,8 +71,9 @@ const Main = () => {
             <img className={classes.img} alt="topBar" src={topBarPic}/>
           </div>
 
-          <div>
-            <ChangeBar  /> 
+          <div style={{backgroundColor:"#F7F7F7"}}>
+            <ChangeBar /> 
+
             {switchPage(page)}
           </div>
             <BottomNavigation

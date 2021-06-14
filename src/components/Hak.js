@@ -1,15 +1,10 @@
   
 import React from 'react';
 import GoogleFontLoader from 'react-google-font-loader';
-import NoSsr from '@material-ui/core/NoSsr';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+import { makeStyles, NoSsr, Card, Box, CardMedia, Button } from '@material-ui/core';
 import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import data from '../important/data.json';
-import coin from './Pictures/our_gold_coin.png';
-import Avatar from '@material-ui/core/Avatar';
+
 
 const useStyles = makeStyles(() => ({
     card: {
@@ -22,9 +17,8 @@ const useStyles = makeStyles(() => ({
       position: 'relative',
       height: 10,
       width: 5, 
-      minWidth: 140,
-      minHeight: 180,
-      margin: 7,
+      minWidth: 100,
+      minHeight: 120,
       '&:after': {
         content: '""',
         display: 'block',
@@ -44,11 +38,13 @@ const useStyles = makeStyles(() => ({
       width: '100%',
       fontFamily: 'Varela Round',
     },
+    button: {
+      zIndex: 1000
+    },
   }));
   
-  export const Hak = React.memo(function GalaxyCard({id, flag}) {
+  export const Hak = React.memo(function GalaxyCard({id}) {
     const mediaStyles = useCoverCardMediaStyles({ bgPosition: 'top'});
-    flag = false;
     const styles = useStyles();
     return (
       <>
@@ -64,14 +60,10 @@ const useStyles = makeStyles(() => ({
           <CardMedia
             classes={mediaStyles}
             image = {data[id].image}
-          />
-          {flag ? (
-            <Avatar alt='coin' name = {data[id].coins} style={{height:'28px', width:'28px', backgroundImage: `url(${coin})`, backgroundSize: 'cover', backgroundPosition: 'center', 
-                                                              color: '#181827', fontFamily: 'Varela Round', fontSize: 'small', fontWeight: 'bold'}}>{data[id].coins}</Avatar>) : 
-            null }
+          />          
           <Box pb={1} px={1} className={styles.content}>
-            <h1 style={{ color: 'white', fontSize: 13 }}>{data[id].name}</h1>
-            <h2 style={{ color: 'white', fontSize: 11 , direction: 'rtl'}}>{data[id].party} | {data[id].points[data[id].points.length-1]} נק'</h2>
+            <h1 class="name" style={{ color: 'white', fontSize: 10 }}>{data[id].name}</h1>
+            <h2 class="party" style={{ color: 'white', fontSize: 7, direction: 'rtl'}}>{data[id].party} | {data[id].points[data[id].points.length-1]} נק'</h2>
           </Box>
         </Card>
       </>

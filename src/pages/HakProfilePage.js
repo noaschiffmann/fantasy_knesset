@@ -3,10 +3,10 @@ import { makeStyles, Card, CardActionArea, CardContent, Button, Typography } fro
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import { Line } from 'react-chartjs-2';
-import  Overlay  from 'react-overlay-component';
-import Hak from '../components/Hak';
-
+import Overlay from 'react-overlay-component';
+// import Hak from '../components/Hak';
 import data from '../important/data.json';
+import HakTable from '../components/HakTable';
 
 const useStyles = makeStyles((theme)=> ({
   root: {
@@ -27,9 +27,9 @@ const useStyles = makeStyles((theme)=> ({
     // flex: 1,
     // marginLeft: 40,
   },
-  popover: {
-    pointerEvents: 'none',
-  },
+  // popover: {
+  //   pointerEvents: 'none',
+  // },
 }));
 
 const HakProfile = ({id}) => {
@@ -39,7 +39,6 @@ const HakProfile = ({id}) => {
   const configs = {
       animate: true,
   };
-
   const classes = useStyles();
 
   return (
@@ -50,7 +49,9 @@ const HakProfile = ({id}) => {
         <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
       </head>
       <CardActionArea>
-        <div align="center"><Hak id={id} /></div>
+        <div align="center">
+          <HakTable id={id} />
+        </div>
         <CardContent>
           <hr></hr>
           <Typography style={{fontFamily: 'Varela Round'}} gutterBottom variant="h6" component="h2" align="center">
