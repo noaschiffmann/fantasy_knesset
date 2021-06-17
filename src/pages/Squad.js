@@ -44,34 +44,65 @@ const useStyles = makeStyles((theme) => ({
 
 const Squad = (props)=> {
   const classes = useStyles();
-  const [curHaaks, setCurHaaks] = useState(JSON.parse(JSON.stringify(data)));  
+  const [curHaks, setCurHaks] = useState(JSON.parse(JSON.stringify(data)));  
+  // const [filteredHaks, setHaks] = useState(JSON.parse(JSON.stringify(data)))
   const card = <Card className={classes.paper} elevation={3}/>
-  const [picked, setPicked] = useState([{id:0, elem:card}, {id:1, elem:card}, {id:2, elem:card}, {id:3, elem:card}, {id:4, elem:card}, {id:5, elem:card}]);
-  const [numPicked, setNumPicked] = useState(0);
-  
+  const [picked, setPicked] = useState([card, card, card, card, card, card])
+  const [pickedID, setPickedID] = useState([])
+  // const [change, setChange] = useState(true);
+  // const [picked, setPicked] = useState([{id:0, elem:card}, {id:1, elem:card}, {id:2, elem:card}, {id:3, elem:card}, {id:4, elem:card}, {id:5, elem:card}]);
+  // const [numPicked, setNumPicked] = useState(0);
+  let numPicked = 0;
+  const [change, setChange] = useState(false)
+
+  useEffect(()=>{
+    setChange(true);
+   },[picked]);
+
   function addHak(id){
     if(numPicked < 6){
-      picked[numPicked].elem = 
-        <Button style={{padding: '0px 0px'}}>
-          <Button color='secondary' className={classes.cancelButton} onClick={()=>handleCancel(numPicked)}>
+      
+      console.log(numPicked)
+      picked[numPicked] = 
+      // picked[numPicked].elem = 
+        (<Button style={{padding: '0px 0px'}}>
+          <Button color='secondary' 
+                  className={classes.cancelButton} 
+                  onClick={()=>handleCancel(numPicked, pickedID.length-1)}>
             <HighlightOffIcon /> 
           </Button>
           <Hak id={id} /> 
-        </Button>
-      setNumPicked(numPicked+1);
+        </Button>);
+      // setPicked(picked)
+      pickedID.push(id);
+      // setNumPicked(numPicked + 1);
+      numPicked++;
+      // setChange(false);
+
+      console.log(pickedID)
+      console.log(numPicked)
       // delete the selected Hak from the list of not selected Haks
-      var index = curHaaks.findIndex(function(item, i){
-        return item.id === id
-      });
-      curHaaks[index].id = -1;
+      // setHaks(filteredHaks)
+      // var index = curHaaks.findIndex(function(item, i){
+      //   return item.id === id
+      // });
+      // curHaaks[index].id = -1;
     }
   }
 
-  function handleCancel(index){
-    // for()
-    picked[index].elem = card;
-    setNumPicked(numPicked - 1);
+  function handleCancel(elemInd, idInd){
+    
+    console.log(numPicked)
+    
+    picked.splice(elemInd, 1)
+    picked.push(card)
+    pickedID.splice(idInd, 1)
 
+    console.log(pickedID)
+
+    // setNumPicked(numPicked - 1);
+    numPicked--;
+    setChange(false)
   }
 
   const [isOpen, setOverlay] = useState(false);
@@ -85,13 +116,12 @@ const Squad = (props)=> {
     setOverlay(true);
     setId(id);
   }
-
   const [searchField, setSearchField]= useState('');
-
   function onSearchChange(event){
     setSearchField(event.target.value);
   }
-  const filteredHaaks = curHaaks.filter(data => {
+
+  const filteredHaks = curHaks.filter(data => {
     return data.name.includes(searchField)
   });
 
@@ -100,17 +130,15 @@ const Squad = (props)=> {
     handleClick(id)
   }
   
-
-  
   return(
     <div class="container-fluid">
-        <br></br>
           <h2 style={{color:"black"}} align="center">🐣 אפרוחי בית זית 🐣</h2>
         <Grid container className={classes.root} spacing={1}>
-            <Grid container justify="center" spacing={2}>
+            <Grid container justify="center" spacing={2} change={change}>
               {picked.map((value) => (
                   <Grid item>
-                    {value.elem}                   
+                    {/* {value.elem}                    */}
+                    {value}
                   </Grid>
                 ))}
               </Grid>
@@ -125,8 +153,9 @@ const Squad = (props)=> {
     <hr></hr>
     
     <Scroll>
-      {filteredHaaks.map((item, index) => {
-        if (item.id !== -1){
+      {filteredHaks.map((item) => {
+        if (!pickedID.includes(item.id)){
+        // if (item.id !== -1){
           return(
              <Button style={{padding: '6px 4px'}} onClick={() => addHak(item.id)}>
               <Button color='primary' className={classes.infoButton} onClick={(event)=>handleInfo(event, item.id)}> <InfoOutlinedIcon /> </Button>

@@ -15,14 +15,22 @@ import '../components/overlay.css';
 const HomeTab=()=> {
   
   function bestHaks(){
+
+    // a = fetch('fantasy--knesset.herokuapp.com/bestHaks')
+    
+    
     return [10, 53, 22]
   }
+
   function upHaks(){
+
     return [2, 4]
   }
+
   function downHaks(){
     return [1, 3]
   }
+  
   const [isOpen, setOverlay] = useState(false);
   const closeOverlay = () => setOverlay(false);
 
@@ -38,7 +46,7 @@ const HomeTab=()=> {
   }
     return (
       <Container>
-      <div align="center" style={{backgroundColor:"#F7F7F7"}}>
+      <div align="center" >
           <Card className="mb-3" style={{height: "500px", width:"1160px", backgroundColor: "#F7F7F7", color: "#F7F7F7", marginTop: "-40px", marginLeft:"-33px"}}>
             <Card.Body style={{ color: "#F7F7F7", height: "400px", backgroundColor: "#F7F7F7"}}>
               <Row>

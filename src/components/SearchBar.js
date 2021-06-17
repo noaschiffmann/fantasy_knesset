@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -6,7 +6,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import Select from '@material-ui/core/Select';
 
-const SearchBox = ({searchfiled, searchChange}) => {
+const SearchBox = ({searchfield, searchChange}) => {
     return (
         <div className = 'tc pa2'>
             <input
@@ -65,11 +65,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SearchBar = ({searchfiled, searchChange}) => {
+const SearchBar = ({searchfield, searchChange}) => {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [party, setParty] = useState('');
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setParty(event.target.value);
+    // console.log(party);
   };
   return (
     <div>
@@ -81,7 +82,7 @@ const SearchBar = ({searchfiled, searchChange}) => {
         <InputLabel style={{fontFamily:"Varela Round"}} htmlFor="outlined-age-native-simple">מפלגה</InputLabel>
         <Select
           native
-          value={age}
+          value={party}
           onChange={handleChange}
           label="Age"
           inputProps={{
@@ -109,7 +110,7 @@ const SearchBar = ({searchfiled, searchChange}) => {
         <InputLabel className={classes.options} htmlFor="outlined-age-native-simple">מגדר</InputLabel>
         <Select
           native
-          value={age}
+          value={party}
           onChange={handleChange}
           label="Age"
           inputProps={{
@@ -126,7 +127,7 @@ const SearchBar = ({searchfiled, searchChange}) => {
         <InputLabel  className={classes.options} htmlFor="outlined-age-native-simple">סדר ע"פ</InputLabel>
         <Select
           native
-          value={age}
+          value={party}
           onChange={handleChange}
           label="Age"
           inputProps={{

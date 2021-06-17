@@ -34,7 +34,7 @@ const MeliaaPage = () => {
             <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
       </head>
       <SearchBar searchChange={onSearchChange}/>
-        <Box style={{width:'90%', marginLeft: '5%', alignItems:'center'}}>
+        {/* <Box style={{width:'90%', marginLeft: '5%', alignItems:'center'}}> */}
         {filteredHaaks.map((item, index) => {
                   return(
                     <row >
@@ -45,7 +45,7 @@ const MeliaaPage = () => {
                     );
                 })
         }
-      </Box>
+      {/* </Box> */}
       <Overlay configs={configs} isOpen={isOpen} closeOverlay={closeOverlay}>
         <HakProfilePage id={id}/>
       </Overlay>
