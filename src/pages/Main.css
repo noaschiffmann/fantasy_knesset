@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+.MuiBottomNavigationAction-label {
+    font-family: 'Varela Round' !important;
+}
+.MuiBottomNavigationAction-root {
+    color: #ffff !important;
+}
+.MuiBottomNavigationAction-label.Mui-selected {
+    font-size: 0.75rem !important;
+}
+.MuiBottomNavigationAction-root.Mui-selected {
+    color: #53b6ee !important;
+}

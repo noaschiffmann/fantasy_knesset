@@ -1,0 +1,27 @@
+
+.avatar {
+
+    box-sizing: border-box;
+    border: 1px solid white;
+}
+
+div, TableCell, TableRow, Table, table, th, tr, td {
+    font-family: 'Varela Round';
+}
+
+h1 {
+    color: black;
+    font-weight: bold;
+    font-family: 'Varela Round';
+}
+
+.overlap {
+    position: relative;
+}
+
+thead {color:green;}
+tbody {color:blue;}
+
+td, th{
+ padding: 5px;
+}

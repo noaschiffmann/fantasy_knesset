@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import MainPage from './pages/MainPage';
+// import './index.css';
 import reportWebVitals from './reportWebVitals';
+import Main from './pages/Main';
+
 
 ReactDOM.render(
-    <MainPage />
+    <Main />
   ,document.getElementById('root')
 );
 
