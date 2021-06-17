@@ -35,10 +35,10 @@ render() {
      const dayString = days > 1 ? 'days' : 'day';
 return (
         timeUp ?
-          <p style={{color: '#144569', fontFamily: 'Varela Round', fontSize:30 ,fontWeight: 'bold'}}>זמן להחלפה</p> 
+          <p style={{color: 'white', fontFamily: 'Varela Round', fontSize:30 ,fontWeight: 'bold'}}>זמן להחלפה</p> 
           :
-          <p style={{color: '#144569', fontFamily: 'Varela Round', fontSize:30 ,fontWeight: 'bold'}}>
-          { `${days} : ${hours} : ${minutes}  : ${seconds} ` } &nbsp; :זמן הנותר להחלפה
+          <p style={{color: 'white', fontFamily: 'Varela Round', fontSize:30 ,fontWeight: 'bold'}}>
+          { `${days} : ${hours} : ${minutes}  : ${seconds} ` } &nbsp; :זמן שנותר להחלפה
           </p>
      );
    }
