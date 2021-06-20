@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import MainPage from './pages/MainPage';
 import reportWebVitals from './reportWebVitals';
+import TwitterApi from './components/TwitterApi.js'
 
 ReactDOM.render(
-    <MainPage />
+    <TwitterApi />
   ,document.getElementById('root')
 );
 
