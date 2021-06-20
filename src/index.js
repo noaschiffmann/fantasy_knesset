@@ -4,6 +4,7 @@ import './index.css';
 import MainPage from './pages/MainPage';
 import reportWebVitals from './reportWebVitals';
 import TwitterApi from './components/TwitterApi.js'
+import Leagues from './pages/Leagues.js';
 
 ReactDOM.render(
     <TwitterApi />
