@@ -1,5 +1,8 @@
 import React from 'react';
 import './Leagues.css';
+import { Row, Col } from 'react-bootstrap';
+import { Card, Grid } from '@material-ui/core';
+import LeaderBoard from '../components/Leaderboard/Lead';
 
 const Leagues = () => {
     return(
@@ -15,20 +18,7 @@ const Leagues = () => {
                 </tr>
                 
             </table> 
-            <div align = 'center' style={{fontFamily: 'Varela Round', marginTop:'3%', fontSize: 'large', fontWeight: 'bold'}}>
-                <tr >הליגות שלי</tr>
-            </div>
-            <table style={{fontFamily: 'Varela Round', marginTop:'3%', border: '1px solid gray', borderRadius: '15px', direction: 'rtl', borderColor: 'gray'}}>
-                <tr style={{border: '1px solid gray', borderRadius: '15px', fontWeight:'bold'}}>
-                    <td >שם הליגה</td>
-                    <td >מיקום</td>
-                </tr>
-                <tr style={{border: '1px solid gray', borderRadius: '15px'}}>
-                    <td >ליגה ארצית</td>
-                    <td >574</td>
-                </tr>
-            </table>
-            
+            <LeaderBoard/>
         </div>
     )
 }

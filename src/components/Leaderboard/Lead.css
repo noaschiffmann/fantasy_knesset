@@ -1,0 +1,15 @@
+.overlap {
+    position: relative;
+}
+
+.avatar {
+
+    box-sizing: border-box;
+    border: 1px solid rgb(245, 244, 244);
+    border-radius: 15px;
+}
+
+.align-me {
+    display: flex;
+    align-items: center;
+  }
