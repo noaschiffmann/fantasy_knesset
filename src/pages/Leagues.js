@@ -1,24 +1,22 @@
 import React from 'react';
 import './Leagues.css';
-import { Row, Col } from 'react-bootstrap';
-import { Card, Grid } from '@material-ui/core';
-import LeaderBoard from '../components/Leaderboard/Lead';
+import { Table, Row, Col } from 'react-bootstrap';
+import { Button } from '@material-ui/core';
+import LeaderBoard from '../components/Leaderboard/LeagueLead.js';
+import data from '../components/Leaderboard/data.json';
 
 const Leagues = () => {
     return(
         <div align='center'>
-            <table align = 'center' style={{fontFamily: 'Varela Round', marginTop:'3%'}}>
-                <tr align = 'center'>
-                    <td style={{width: '50%'}}>
-                        <button class='button' style={{backgroundColor: 'blue', color: 'white'}}>הצטרף לליגה</button>
-                    </td>
-                    <td style={{width: '50%'}}>
-                        <button class='button' style={{backgroundColor: 'white', color: 'blue'}}>צור ליגה</button>
-                    </td>
-                </tr>
-                
-            </table> 
-            <LeaderBoard/>
+            <Row align = 'center' style={{marginTop:'3%',direction: 'rtl', width:'100%'}}>
+                    <Button variant="contained" color="primary" style={{backgroundColor: 'white', color: '#344FA1', fontFamily: 'Varela Round', fontWeight: 'bold', width:'120px', marginLeft: '5%', marginRight: '16%'}}>
+                        צור ליגה
+                    </Button>
+                    <Button variant="contained" color="primary" style={{backgroundColor: '#344FA1', color: 'white', fontFamily: 'Varela Round', fontWeight: 'bold', width:'120px', borderSpacing: '5%'}}>
+                        הצטרף לליגה
+                    </Button>
+            </Row>
+            <LeaderBoard Name={"להב רום"}/>
         </div>
     )
 }
