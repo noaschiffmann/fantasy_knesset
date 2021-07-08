@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+.avatar {
+    box-sizing: border-box;
+    border: 1px solid rgb(245, 244, 244);
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+}

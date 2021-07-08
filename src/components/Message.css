@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+.MuiButton-root {
+    font-family: 'Varela Round' !important;
+    color: white !important;
+}
+
+.h5 {
+height: 2rem;
+}
+
+.card-header {
+    color: white !important;
+}
+
+.card {
+    background-color: "#F7F7F7" !important;
+    margin:10 !important;
+    padding: 10 !important;
+}
+.styles_overlay-close__3e1ke{
+    max-height: 25px;
+    max-width: 25px;
+    margin-right: 6px;
+    margin-top: 6px;
+    z-index: 100;
+}

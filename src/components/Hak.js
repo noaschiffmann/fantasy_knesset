@@ -63,7 +63,7 @@ const useStyles = makeStyles(() => ({
           />          
           <Box pb={1} px={1} className={styles.content}>
             <h1 class="name" style={{ color: 'white', fontSize: 10 }}>{data[id].name}</h1>
-            <h2 class="party" style={{ color: 'white', fontSize: 7, direction: 'rtl'}}>{data[id].party} | {data[id].points[data[id].points.length-1]} נק'</h2>
+            <h2 class="party" style={{ color: 'white', fontSize: 7, direction: 'rtl'}}>{data[id].party} | {data[id].points.reduce((x,y) => x + y)} נק'</h2>
           </Box>
         </Card>
       </>

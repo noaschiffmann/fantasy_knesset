@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { makeStyles, Button} from '@material-ui/core';
 
 class CountDownTimer extends Component {
 state = {
@@ -12,8 +13,8 @@ state = {
 
 componentDidMount() {
    setInterval(() => {
-      let eventDate = +new Date(this.props.date);
-      let difference = eventDate - +new Date();
+      let eventDate = + new Date(this.props.date);
+      let difference = eventDate - new Date();
 if (difference < 1) {
          this.setState({ timeUp: true });
       } else {
@@ -35,10 +36,14 @@ render() {
      const dayString = days > 1 ? 'days' : 'day';
 return (
         timeUp ?
-          <p style={{color: 'white', fontFamily: 'Varela Round', fontSize:30 ,fontWeight: 'bold'}}>זמן להחלפה</p> 
+        <div>
+          <Button style={{width:"90%", fontFamily: "Varela Round"}}
+                onClick={()=>{}}
+                variant="contained" color="secondary" size="large" align="center">ערוך קבוצה
+            </Button> <br></br><br></br></div>
           :
-          <p style={{color: 'white', fontFamily: 'Varela Round', fontSize:30 ,fontWeight: 'bold'}}>
-          { `${days} : ${hours} : ${minutes}  : ${seconds} ` } &nbsp; :זמן שנותר להחלפה
+          <p style={{color: '#144569', fontFamily: 'Varela Round', fontSize:17 ,fontWeight: 'bold', background:"#c4def6", width:'100%'}}>
+          { `${days} : ${hours} : ${minutes}  : ${seconds} ` } &nbsp; :זמן הנותר להחלפה
           </p>
      );
    }

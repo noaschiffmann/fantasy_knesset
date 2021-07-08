@@ -5,21 +5,13 @@
 }
 
 .avatar {
-
     box-sizing: border-box;
     border: 3px solid rgb(245, 244, 244);
 }
 
 h1 {
-    color: white;
     font-weight: bold;
     font-family: 'Varela Round';
-}
-
-table {
-    width: 100%;
-    border:0px transparent;
-    border-collapse: collapse;
 }
 
 tr, td, th

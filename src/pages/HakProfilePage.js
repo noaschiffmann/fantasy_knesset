@@ -4,7 +4,6 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import { Line } from 'react-chartjs-2';
 import Overlay from 'react-overlay-component';
-// import Hak from '../components/Hak';
 import data from '../important/data.json';
 import HakTable from '../components/HakTable';
 
@@ -23,14 +22,20 @@ const useStyles = makeStyles((theme)=> ({
   },
   button: {
     marginInline: "10%"
-    // width: 20,
-    // flex: 1,
-    // marginLeft: 40,
   },
-  // popover: {
-  //   pointerEvents: 'none',
-  // },
 }));
+
+function setLabels(){
+  let labels = [];
+  let points_array = data[0].points;
+  const current_day = new Date();
+  for (let i in points_array){
+    let tmp = new Date()
+    tmp.setDate(current_day.getDate() - (points_array.length - i)) 
+    labels.push(tmp.toLocaleDateString())
+  }
+  return labels;
+}
 
 const HakProfile = ({id}) => {
 
@@ -81,7 +86,7 @@ const HakProfile = ({id}) => {
       <Overlay configs={configs} isOpen={isOpen} closeOverlay={closeOverlay}>
         <div style={{height: 120, width: "300px"}}>
           <Line
-                data={{ labels:['A','B','C','D','E'],
+                data={{ labels: setLabels(),
                         datasets: [ {
                             label: "points",
                             fill: true,

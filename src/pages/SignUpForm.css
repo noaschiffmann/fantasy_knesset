@@ -1,0 +1,32 @@
+input.create-book-photo-input {
+    opacity: inherit !important;
+    width: 100% !important;
+    position: relative;
+}
+
+.create-book-photo-icon{
+    position: relative !important;
+    color: #344FA1 !important;
+    width: 35% !important;
+    margin-top: -20%;
+    padding-top: 28%;
+
+}
+
+.create-book-image-preview-icon-container {
+    margin-top: 60%;
+    width: 30% !important;
+    height: 90% !important;
+}
+
+.image {
+    width: 80% !important;
+    height: 100% !important;
+    /* margin-top: 20%; */
+    margin-left: -30%;
+    border-radius: 5%;
+}
+
+.create-book-image-preview-icon{
+    width: 50% !important;
+}
