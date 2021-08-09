@@ -86,10 +86,10 @@ const HakTable = React.memo(function GalaxyCard({id}) {
           </Box>
         </Card>
         <box className={styles.data}>
-        <h2 style={{color: 'black', fontSize: 11 , direction: 'rtl', textDecoration:'underline'}}> נתוני השבוע:</h2>
-        <h2 style={{color: 'black', fontSize: 9 , direction: 'rtl'}}> נוכחות (ש"ש): {sumAttendWeek()} </h2>
-        <h2 style={{color: 'black', fontSize: 9 , direction: 'rtl'}}> מספר שאילתות: {data[id].num_queries} </h2>
-        <h2 style={{color: 'black', fontSize: 9 , direction: 'rtl'}}> מגמת שינוי: {data[id].points[data[id].points.length-1]-data[id].points[data[id].points.length-2]} נק</h2>
+          <h2 style={{color: 'black', fontSize: 11 , direction: 'rtl', textDecoration:'underline'}}> נתוני השבוע:</h2>
+          <h2 style={{color: 'black', fontSize: 9 , direction: 'rtl'}}> נוכחות (ש"ש): {sumAttendWeek()} </h2>
+          <h2 style={{color: 'black', fontSize: 9 , direction: 'rtl'}}> מספר שאילתות: {data[id].num_queries} </h2>
+          <h2 style={{color: 'black', fontSize: 9 , direction: 'rtl'}}> מגמת שינוי: {data[id].points[data[id].points.length-1]-data[id].points[data[id].points.length-2]} נק</h2>
         </box>
         </div>
         </div>

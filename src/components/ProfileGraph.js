@@ -4,10 +4,10 @@ import current_user from '../important/current_user.json';
 import all_users from '../important/all_users.json';
 
 
-function setLabels(){
+function setLabels(userName){
   let points_array = []
   for (let i in all_users){
-    if (all_users[i].username === current_user.user_name){
+    if (all_users[i].username === userName){
       points_array = all_users[i].points;
       break;
     }
@@ -19,27 +19,31 @@ function setLabels(){
     tmp.setDate(current_day.getDate() - (points_array.length - i)) 
     labels.push(tmp.toLocaleDateString())
   }
-  return {"labels":labels,"points":points_array};
-}
-
-const state = {
-  labels: setLabels()["labels"],
-  datasets: [
-    {
-      label: 'Points',
-      fill: true,
-      lineTension: 0.5,
-      backgroundColor: '#144569',
-      borderColor: 'rgba(0,0,0,1)',
-      borderWidth: 2,
-      data: setLabels()["points"]
-    }
-  ]
+  return {"labels":labels, "points":points_array};
 }
 
 
 
-const profileGraph = () => {
+
+
+const profileGraph = ({userName}) => {
+  
+  const state = {
+    labels: setLabels(userName)["labels"],
+    datasets: [
+      {
+        label: 'Points',
+        fill: true,
+        lineTension: 0.5,
+        backgroundColor: '#144569',
+        borderColor: 'rgba(0,0,0,1)',
+        borderWidth: 2,
+        data: setLabels(userName)["points"]
+      }
+    ]
+  }
+
+
     return (
         <div>
         <Line
@@ -47,7 +51,6 @@ const profileGraph = () => {
             options={{
             title:{
                 display:true,
-                text:'Average Rainfall per month',
                 fontSize:20
             },
             legend:{

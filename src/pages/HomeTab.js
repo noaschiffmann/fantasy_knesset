@@ -17,7 +17,6 @@ import TwitterApi from '../components/TwitterApi';
 import data from '../important/data.json';
 import { makeStyles } from '@material-ui/core/styles';
 import LeaderBoard from '../components/LeaderBoard/Lead';
-import current_user from '../important/current_user.json';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -50,7 +49,12 @@ const HomeTab = (props) => {
   
   function bestHaks(){
     let tmp = Object.create(data)
-    return tmp.sort((a, b) => (b.points.reduce((x,y)=> x+y)) - (a.points.reduce((x,y) => x+y))).slice(0,10).reverse();
+    try {
+      return tmp.sort((a, b) => (b.points.reduce((x,y)=> x+y)) - (a.points.reduce((x,y) => x+y))).slice(0,10).reverse();
+    } catch (error) {
+      alert('יש בעית תקשורת, המידע המוצג אינו עדכני');
+      return tmp.slice(0,10);
+    }
   }
 
   function upHaks(){
@@ -67,9 +71,9 @@ const HomeTab = (props) => {
 
   function ScrollBox( children ) {
     return (
-      <div className="scroll-box">
+      <div className="scroll-box" style={{direction: 'rtl'}} >
         <div className="scroll-box__wrapper">
-          <div style={{direction:'rtl', width: "max-content"}} className="scroll-box__container" role="list">
+          <div style={{direction:'ltr', width: "max-content"}} className="scroll-box__container" role="list">
             {children.map((item,i) => (
               <div className="scroll-box__item" role="listitem" key={`scroll-box-item-${i}`}>
                 <div>
@@ -122,7 +126,7 @@ const HomeTab = (props) => {
                     ח"כים מובילים
                 </h2>
                 <div style={{marginBottom:12}}>
-                {ScrollBox(bestHaks())}
+                  {ScrollBox(bestHaks())}
                 </div>
                 <Button variant="contained" color="secondary" onClick={handleClickToMelia}> לרשימה המלאה </Button>
           </div>

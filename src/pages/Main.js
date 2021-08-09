@@ -19,6 +19,7 @@ import LoadingPage from '../components/LoadingPage';
 import current_user from '../important/current_user.json';
 import all_users from '../important/all_users.json';
 import tweets from '../components/tweets.json';
+import UserProfilePage from './UserProfilePage';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -84,16 +85,7 @@ const Main = () => {
     axios.get('https://fk-backend.herokuapp.com/getUsersData')
     .then((response) => {
         for (let i in response.data){
-        //   let user = {
-        //               'username': response.data[i].username,
-        //               'teamName': response.data[i].teamName,
-        //               'points': response.data[i].points,
-        //               'team': response.data[i].team,
-        //               'image': response.data[i].image.blob()
-        //              }
-        //       console.log(user);
-        //       all_users.push(user);
-        all_users.push(response.data[i])
+          all_users.push(response.data[i])
         }
         setLoaded(true);
     })
@@ -110,6 +102,7 @@ const Main = () => {
   const classes = useStyles();
   const [page, setPage] = useState(1);
   const [value, setValue] = useState(3);
+  const [seeUser, setSeeUser] = useState("");
   
   function switchPage(page){
     // eslint-disable-next-line default-case
@@ -126,13 +119,15 @@ const Main = () => {
         }
         return <NoTeamPage onRegister={()=>setPage(5)}/>
       case(3):
-        return <LeaguesPage />
+        return <LeaguesPage setUser={setSeeUser} toUser={()=>setPage(7)} />
       case(4):
         return <KnessetWalkThroughPage />
       case(5):
          return <Squad onAcceptTeam={()=>setPage(6)} />
       case(6):
         return <PlayerProfilePage />
+      case(7):
+        return <UserProfilePage userName={seeUser} />
     }
 }
     return (
@@ -150,6 +145,7 @@ const Main = () => {
           <div style={{marginTop: "2.8%", backgroundColor:"#F7F7F7"}}>
             <ChangeBar />
             {switchPage(page)}
+            
           </div>
           <br></br>
           <br></br>

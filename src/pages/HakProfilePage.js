@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme)=> ({
     paddingRight: 8,
   },
   button: {
-    marginInline: "10%"
+    marginInline: "15%"
   },
 }));
 
@@ -91,7 +91,7 @@ const HakProfile = ({id}) => {
                             label: "points",
                             fill: true,
                             lineTension: 0.5,
-                            backgroundColor: 'rgba(75,192,192,1)',
+                            backgroundColor: '#144569',
                             borderColor: 'rgba(0,0,0,1)',
                             borderWidth: 2,
                             data: data[id].points

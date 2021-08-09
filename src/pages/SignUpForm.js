@@ -44,16 +44,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
 
-  const [imageSrc, setImageSrc] = useState()
+  const [imageSrc, setImageSrc] = useState();
+  const [imageUpload, setImageUpload] = useState();
  
   const handleImageSelect = (e) => {
     setImageSrc(URL.createObjectURL(e.target.files[0]))
+    setImageUpload(e.target.files[0])
   }
 
   const classes = useStyles();
 
   function signUp(){
-    
+    let uploadData = new FormData()
+    uploadData.append('image', imageUpload, userName+'.jpg')
+
     const axios = require('axios');
     axios.get('https://fk-backend.herokuapp.com/registration', {
       params: {
@@ -61,13 +65,24 @@ export default function SignIn(props) {
                 'email': email, 
                 'password': password, 
                 'teamName': teamName, 
-                'image': imageSrc
               }
     })
       .then((response) => {
         let data = response.data;
         if (data['accepted']){
           current_user.user_name = data['userName']
+          axios.post('https://fk-backend.herokuapp.com/uploadImage', uploadData, {
+            headers: {
+              'content-type': 'multipart/form-data'
+            }
+          })
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(error => {
+            console.log(error)
+            alert("יש בעית תקשורת, נסה להתחבר מאוחר יותר")
+          })
           axios.get('https://fk-backend.herokuapp.com/getUsersData')
             .then((response) => {
               for (let i in response.data){
@@ -109,7 +124,6 @@ export default function SignIn(props) {
       </Typography>
 
       <form method="Post" className={classes.form} noValidate>
-        {/* {% csrf_token %} */}
         <TextField
           variant="outlined"
           margin="normal"
@@ -158,21 +172,21 @@ export default function SignIn(props) {
           onChange={(e)=>setTeamName(e.target.value)}
         />
         <div className={classes.container} style={{flexDirection: 'row'}}>
-        <div align='center' class='create-book-photo-picker _FCdzt' style={{width: "50%", height: 100}} ><ImageUpload  
-          handleImageSelect={handleImageSelect}
-          imageSrc={imageSrc}
-          setImageSrc={setImageSrc}
-          style={{
-            width: '73%',
-            height: 40,
-            fontFamily: 'Varela Round',
-            borderRadius:'100%'
-          }}
+        <div align='center' class='create-book-photo-picker _FCdzt' style={{width: "50%", height: 100}} >
+          <ImageUpload 
+            handleImageSelect={handleImageSelect}
+            imageSrc={imageSrc}
+            setImageSrc={setImageSrc}
+            style={{
+              width: '73%',
+              height: 40,
+              fontFamily: 'Varela Round',
+              borderRadius:'100%'
+            }}
         />
         </div>
         </div>
         <Button
-          // type="submit"
           fullWidth
           variant="contained"
           color="primary"
@@ -183,13 +197,6 @@ export default function SignIn(props) {
             צור פרופיל
         </Button>
       
-        {/* <Grid container align="center">
-          <Grid item xs>
-            <Link href="#" variant="body2">
-              שכחתי סיסמה 
-            </Link>
-          </Grid>
-        </Grid> */}
       </form>
     </div>
     <Box mt={1}>

@@ -18,7 +18,7 @@ const RulesOverlay = () => {
     <Card.Text style={{fontSize: 13}}>מטרתך היא לבנות קבוצה של 6 ח"כים אשר תזכה <br />.אותך במירב הנקודות</Card.Text>
       <Card.Text style={{fontSize: 13}}>
       :על הקבוצה להיות מורכבת כך ש<br />
-      א.ישנו ייצוג של שני המגדרים<br />
+      א. ישנו ייצוג של שני המגדרים<br />
       ב. ישנו ייצוג של שתי מפלגות לכל הפחות</Card.Text>
       <Card.Text style={{fontSize: 13}}>.אחת לשבועיים ניתן לבצע החלפה של עד שני ח"כים</Card.Text>
       <Card.Title style={{fontSize: 17, margin:-5}}>!בהצלחה</Card.Title>

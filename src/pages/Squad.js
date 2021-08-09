@@ -125,6 +125,7 @@ const Squad = (props) => {
     setOverlay(true);
     setId(id);
   }
+  
   function acceptTeam(){
     axios.get('https://fk-backend.herokuapp.com/checkTeam', {
       params: {

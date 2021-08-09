@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import 'tachyons';
-import CountDownTimer from "../components/CountDownTimer";
 import Avatar from '../components/AvatarBar/Avatar.js';
 import Overlay from 'react-overlay-component';
 import Button from '@material-ui/core/Button';
@@ -10,7 +9,6 @@ import HakProfilePage from './HakProfilePage';
 import LeaderBoard from '../components/LeaderBoard/Lead.js';
 import ProfileGraph from '../components/ProfileGraph';
 import { makeStyles } from '@material-ui/core/styles';
-import current_user from '../important/current_user.json';
 import all_users from '../important/all_users.json';
 
 
@@ -34,7 +32,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const PlayerProfilePage = () => {
+const UserProfilePage = ({userName}) => {
     const [isOpen, setOverlay] = useState(false);
     const closeOverlay = () => setOverlay(false);
     const configs = {
@@ -46,7 +44,7 @@ const PlayerProfilePage = () => {
     function myHaks(){
       let team = []
       for (let i in all_users){
-        if (all_users[i].username === current_user.user_name){
+        if (all_users[i].username === userName){
           team = all_users[i].team
           break;
         } 
@@ -62,10 +60,6 @@ const PlayerProfilePage = () => {
     return output;
     }
 
-    function swapDate(){
-      return "08/30/2021";
-    }
-
     function handleClick(id){
       setOverlay(true);
       setId(id);
@@ -73,7 +67,7 @@ const PlayerProfilePage = () => {
     
     return (
           <body align="center" style={{backgroundColor: '#F7F7F7', width: "100%"}}>
-            <Avatar userName={current_user.user_name} />
+            <Avatar userName={userName} />
             <div className={styles.container}>
             <div className={styles.box} align='center' width="100%" style={{flex:1, marginTop:-90}}>
               <br></br>
@@ -95,14 +89,13 @@ const PlayerProfilePage = () => {
             <div className={styles.box} align='center' width="100%" style={{flex:1, marginTop:20}}>
             &nbsp;
                 <div align='center' style={{fontFamily: 'Varela Round', fontSize: "medium", fontWeight:"bold", marginBottom:10}}>הסטוריית הנקודות שלי</div>
-                <div align='center' style={{width: '95%'}}><ProfileGraph userName={current_user.user_name} /> </div>
+                <div align='center' style={{width: '95%'}}><ProfileGraph userName={userName} /> </div>
               </div>
               <br></br>
-              <div align="center" style={{width:'100%'}}><CountDownTimer date={swapDate()}/></div>
           </div>
           </body>          
      
     );
   }
 
-export default PlayerProfilePage;
+export default UserProfilePage;
