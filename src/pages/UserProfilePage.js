@@ -1,3 +1,7 @@
+/**
+ * The page of other users when you press them in League page.
+ */
+
 import React, { useState } from "react";
 import 'tachyons';
 import Avatar from '../components/AvatarBar/Avatar.js';
@@ -41,6 +45,9 @@ const UserProfilePage = ({userName}) => {
     const [id, setId] = useState(0);
     const styles = useStyles();
 
+    /**
+     * @returns my team members id numbers
+     */
     function myHaks(){
       let team = []
       for (let i in all_users){

@@ -1,3 +1,9 @@
+/**
+ * the national league component
+ * presenting the top 20 users in terms of points
+ */
+
+
 import React from 'react';
 import all_users from '../../important/all_users.json';
 import { Row, Col } from 'react-bootstrap';
@@ -21,8 +27,8 @@ const League = (props) => {
       return url;
     }
 
+    // move to the profile of this user
     function handleClick(username){
-        console.log(username)
         props.setUser(username);
         props.toUser()
     }

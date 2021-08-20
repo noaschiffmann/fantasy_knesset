@@ -1,3 +1,7 @@
+/**
+ * The profile page of the users
+ */
+
 
 import React from 'react';
 import './Avatar.css';

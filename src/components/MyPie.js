@@ -1,3 +1,8 @@
+/**
+ * The pie chart that appears in the home tab showing the percentages of all haks
+ */
+
+
 import React from 'react';
 import { ChartDonut } from '@patternfly/react-charts';
 import './MyPie.css';
@@ -29,7 +34,6 @@ const MyPie = () => {
         legendData ={[{ name : 'עליה: ' + String(HaksPie()[0])}, { name : 'ירידה: ' + String(HaksPie()[1])}, { name : 'ללא שינוי: ' + String(HaksPie()[2])}]}
         legendOrientation="vertical"
         legendPosition="right"
-        style={{fontFamily: "Varela Round"}}
         padding={{
           bottom: 20,
           left: 20,

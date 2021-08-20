@@ -1,3 +1,8 @@
+/**
+ * show the tweets in the home tab
+ */
+
+
 import React from 'react';
 import tweets from './tweets.json';
 import './TwitterApi.css'
@@ -9,7 +14,6 @@ const TwitterApi = () => {
 
     return (
         <div style={{marginLeft: "2%"}}>
-            {/* {tweets = load_tweets()} */}
         <Grid container align='center'>
         {tweets.map((item) => {
             return(

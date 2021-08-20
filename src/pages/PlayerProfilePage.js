@@ -1,3 +1,8 @@
+/**
+ * The user's profile page
+ */
+
+
 import React, { useState } from "react";
 import 'tachyons';
 import CountDownTimer from "../components/CountDownTimer";
@@ -43,6 +48,9 @@ const PlayerProfilePage = () => {
     const [id, setId] = useState(0);
     const styles = useStyles();
 
+    /**
+     * returns the Haks of the connected user
+     */
     function myHaks(){
       let team = []
       for (let i in all_users){
@@ -63,9 +71,10 @@ const PlayerProfilePage = () => {
     }
 
     function swapDate(){
-      return "08/30/2021";
+      return "09/15/2021";
     }
 
+    // if Hak has been clicked, open overlay and set the id to the id of the Hak clicked
     function handleClick(id){
       setOverlay(true);
       setId(id);

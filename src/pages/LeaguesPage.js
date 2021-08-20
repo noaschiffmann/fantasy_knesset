@@ -1,8 +1,11 @@
+/**
+ * The national league's page, showing the top 20 teams
+ */
+
 
 import React from 'react';
 import League from '../components/LeaderBoard/League';
 import { makeStyles } from '@material-ui/core/styles';
-
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -30,10 +33,8 @@ const Leagues = (props) => {
     const styles = useStyles();
 
     function passUser(username){
-      console.log("passUser: "+ username)
       props.setUser(username)
     }
-
 
     return(
         <body alignitems="center" style={{backgroundColor: '#F7F7F7', width: "100%"}}>

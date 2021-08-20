@@ -1,6 +1,10 @@
+/**
+ * the more informative Hak component in the home tab only for the 10 best Haks appearing in the side scrolling box 
+ */
+
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Card, CardMedia } from '@material-ui/core';
+import { makeStyles, Box, Card, CardMedia } from '@material-ui/core';
 import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import data from '../important/data.json';
 import './HakTable.css';

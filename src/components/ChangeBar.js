@@ -1,4 +1,9 @@
-import React, {Component} from "react";
+/**
+ * the moving top ligh-blue bar, with the updated Haks points
+ */
+
+
+import React from "react";
 import Marquee from "react-fast-marquee";
 import data from '../important/data.json';
 
@@ -8,7 +13,6 @@ const ChangeBar = () => {
       for (let key in data){
         output += data[key].name + " ~ " + data[key].points[data[key].points.length - 1] + "+, "
       }
-        // return "בני גנץ 8 ~ בנימין נתניהו 9 ~ מרב מיכאלי 12 ~ מיכאל ביטון 11 ~ מירב כהן 12 ~ יאיר לפיד 9 ~ אחמד טיבי 12 ~"
         return output;
     }
     

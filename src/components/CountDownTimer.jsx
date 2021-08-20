@@ -1,14 +1,19 @@
+/**
+ * The timer in the profile page that counts down to when you can switch some Haks
+ */
+
+
 import React, { Component } from 'react';
-import { makeStyles, Button} from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 class CountDownTimer extends Component {
-state = {
+   state = {
      days: 0,
      hours: '00',
      minutes: '00',
      seconds: '00',
      timeUp: false
-}
+   }
 
 
 componentDidMount() {

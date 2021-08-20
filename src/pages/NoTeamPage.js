@@ -1,3 +1,9 @@
+/**
+ * when you are not connected to the app, when you press the 'הקבוצה שלי' button, 
+ * you are moving to this page where you get some information about the app and why you shoukd sign up for it
+ */
+
+
 import React, { useEffect, useState } from "react";
 import  Overlay  from 'react-overlay-component';
 import { Button, makeStyles } from '@material-ui/core';

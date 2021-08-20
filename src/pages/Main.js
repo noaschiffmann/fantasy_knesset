@@ -1,3 +1,9 @@
+/**
+ * this is the main page of the app. from here we rendering all the other pages.
+ * actually, our app has only 1 page (this page) where we render the top and bottom bar and in the middle we render the page you selected
+ */
+
+
 import React, { useEffect, useState } from "react";
 import PlayerProfilePage from "./PlayerProfilePage";
 import HomeTab from "./HomeTab";
@@ -44,7 +50,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Main = () => {
-    
+  
+  /**
+   * First thing you do when uploading the app, we extract the most updated data about our Haks, tweets and users.
+   */
   useEffect(() => {
     const axios = require('axios');
     axios.get('https://fk-backend.herokuapp.com/getTweets')
@@ -93,8 +102,6 @@ const Main = () => {
         console.log(error);
         alert("יש בעית תקשורת, נסה להתחבר מאוחר יותר");
     })
-    
-    
   },[]);
   
   const [loaded, setLoaded] = useState(false);
@@ -104,12 +111,17 @@ const Main = () => {
   const [value, setValue] = useState(3);
   const [seeUser, setSeeUser] = useState("");
   
+  /**
+   * each click on the bottom bar calls this function that renders the asked page
+   * @param page is the index number representing to which page we should move 
+   * @returns the page we want to move to, the React component to render.
+   */
   function switchPage(page){
     // eslint-disable-next-line default-case
     switch(page){
-      case(1):
+      case(1):  // move to the home tab
         return <HomeTab changeBottomBar={()=>setValue(0)} toMeliaa={()=>setPage(4)} />
-      case(2):
+      case(2):  // if not connected, move to the NoTeamPage, else move to the user's profile page
         for (let i in all_users){
           if (all_users[i].username === current_user.user_name){
             if (all_users[i].team.length !== 0){
@@ -118,20 +130,20 @@ const Main = () => {
           }
         }
         return <NoTeamPage onRegister={()=>setPage(5)}/>
-      case(3):
+      case(3):  // move to League's page
         return <LeaguesPage setUser={setSeeUser} toUser={()=>setPage(7)} />
-      case(4):
+      case(4):  // move to Meliaa's page
         return <KnessetWalkThroughPage />
-      case(5):
+      case(5):  // move to build my team page
          return <Squad onAcceptTeam={()=>setPage(6)} />
-      case(6):
+      case(6):  // move to the user's profile page
         return <PlayerProfilePage />
-      case(7):
+      case(7):  // move to the user clicked on profile page
         return <UserProfilePage userName={seeUser} />
     }
 }
     return (
-      loaded ?
+      loaded ?  // if the data from the backend has loaded, render the page
         <div>
           <head>
               <link rel="preconnect" href="https://fonts.gstatic.com"/>
@@ -162,13 +174,10 @@ const Main = () => {
               <BottomNavigationAction onClick={()=>setPage(1)} label="דף הבית" icon={<HomeOutlinedIcon />} />
             </BottomNavigation>
         </div>
-        :
-
+        :  // if still loading, render the loading page
         <div align="center" style={{marginTop:'35%'}}>
           <LoadingPage />
         </div>
-        
-
     );
   }
   

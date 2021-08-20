@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListSubheader from '@material-ui/core/ListSubheader';
+/**
+ * The searches bar component that appears in the building the squad page and the Meliaa page
+ */
+
+
+import React from 'react';
+import { makeStyles, InputLabel, FormControl, Select, MenuItem } from '@material-ui/core';
 import "./SearchBar.css";
 
-const SearchBox = ({searchfiled, searchChange}) => {
+const SearchBox = ({searchChange}) => {
     return (
         <div className = 'tc pa2'>
             <input
@@ -24,7 +22,6 @@ const SearchBox = ({searchfiled, searchChange}) => {
     );
 }
 
-
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -32,9 +29,10 @@ const useStyles = makeStyles((theme) => ({
     
   },
 }));
+
+
 const SearchBar = (props) => {
   const classes = useStyles();
-  // const [partyField, setPartyField]= useState("");
 
   return (
     <div>
@@ -43,7 +41,7 @@ const SearchBar = (props) => {
         <SearchBox searchChange={props.searchChange}/>
         </FormControl>
       </div>
-      <FormControl onClick={(e)=>props.setPartyField(e.target.value)} className={classes.formControl}>
+      <FormControl onClick={(e) => props.setPartyField(e.target.value)} className={classes.formControl}>
         <InputLabel htmlFor="grouped-native-select">מפלגה</InputLabel>
         <Select defaultValue="" id="grouped-select">
             <MenuItem value="">כל המפלגות</MenuItem>
@@ -62,7 +60,7 @@ const SearchBar = (props) => {
             <MenuItem value="כחול לבן">כחול לבן</MenuItem>
         </Select>
       </FormControl>
-      <FormControl onClick ={(e) =>props.setGenderField(e.target.value)} className={classes.formControl}>
+      <FormControl onClick ={(e) => props.setGenderField(e.target.value)} className={classes.formControl}>
         <InputLabel style={{}} htmlFor="grouped-select">מגדר</InputLabel>
         <Select defaultValue="" id="grouped-select">
           <MenuItem value="">שני המינים</MenuItem>

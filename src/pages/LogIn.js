@@ -1,3 +1,8 @@
+/**
+ * The log in page
+ */
+
+
 import ShortSignUpForm from '../pages/ShortSignUpForm';
 import React, { useEffect, useState } from "react";
 import  Overlay  from 'react-overlay-component';

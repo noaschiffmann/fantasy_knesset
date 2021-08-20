@@ -1,8 +1,12 @@
+/**
+ * the log in form- based on the long sign up form
+ */
+
+
 import { React, useState } from 'react';
 import { Button, CssBaseline, TextField, Link, Grid, Box, Typography, makeStyles, Container } from '@material-ui/core';
 import Logo from '../important/pictures/logo.png';
 import current_user from '../important/current_user.json';
-import SignUpForm from './SignUpForm';
 
 
 function Copyright() {
@@ -36,6 +40,9 @@ export default function SignIn(props) {
   const [userName, setUserName] = useState();
   const [password, setPassword] = useState();
 
+  /**
+   * check in backend if this user exists
+   */
   function signIn(){
     const axios = require('axios');
     axios.get('https://fk-backend.herokuapp.com/login', {
@@ -61,6 +68,9 @@ export default function SignIn(props) {
 
   }
 
+  /**
+   * if clicking the 'אין לי חשבון' link, move to long sign up form
+   */
   function handleNoAccount(){
     props.onRegister()
     props.moveToSignUp()

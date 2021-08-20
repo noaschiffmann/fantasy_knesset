@@ -1,6 +1,10 @@
+/**
+ * show the stats of the given userName
+ */
+
+
 import React from 'react';
-import {Line} from 'react-chartjs-2';
-import current_user from '../important/current_user.json';
+import { Line } from 'react-chartjs-2';
 import all_users from '../important/all_users.json';
 
 
@@ -23,9 +27,6 @@ function setLabels(userName){
 }
 
 
-
-
-
 const profileGraph = ({userName}) => {
   
   const state = {
@@ -42,7 +43,6 @@ const profileGraph = ({userName}) => {
       }
     ]
   }
-
 
     return (
         <div>

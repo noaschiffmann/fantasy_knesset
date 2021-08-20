@@ -1,3 +1,8 @@
+/**
+ * The small national league page that appears in the profile pages and the home tab
+ */
+
+
 import React from 'react';
 import './Lead.css';
 import { Row, Col } from 'react-bootstrap';

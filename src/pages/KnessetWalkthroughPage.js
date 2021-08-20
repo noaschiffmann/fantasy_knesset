@@ -1,4 +1,9 @@
-import { React, useEffect, useState } from "react";
+/**
+ * This page is the Meliaa page where you can see all the Haks
+ */
+
+
+import { React, useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import Hak from '../components/Hak';
 import Overlay from 'react-overlay-component';
@@ -8,18 +13,19 @@ import HakProfilePage from './HakProfilePage';
 
 
 const MeliaaPage = () => {
+
   const [genderField,setGenderField]= useState('');
   const [partyField, setPartyField]= useState('');
   const [searchField, setSearchField]= useState('');
   const [sortField, setSortField]= useState('');
 
-
+  // search box
   function onSearchChange(event){
-    setSearchField(event.target.value);
-    
+    setSearchField(event.target.value);    
   }
 
-  function sortHaaks(data){
+  // sort Haks with the filters
+  function sortHaks(data){
     if (sortField === 2){
       return data.sort(function(a,b){
         return b.coins - a.coins
@@ -32,7 +38,7 @@ const MeliaaPage = () => {
     
   } 
   
-  const filteredHaaks = sortHaaks(data).filter(data => {
+  const filteredHaaks = sortHaks(data).filter(data => {
     return data.name.includes(searchField) && data.party.includes(partyField) && data.gender.includes(genderField)});
   
   const [isOpen, setOverlay] = useState(false);
@@ -49,13 +55,13 @@ const MeliaaPage = () => {
   return (
     <div className='tc' style={{width: "100%", marginTop: "-3%"}}>
       <head>
-            <link rel="preconnect" href="https://fonts.gstatic.com"/>
-            <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
+          <link rel="preconnect" href="https://fonts.gstatic.com"/>
+          <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
       </head>
       <br></br>
-      <SearchBar setPartyField={(e)=>setPartyField(e)} setGenderField={(e) =>setGenderField(e)} setSortField={(e) =>setSortField(e)} searchChange={onSearchChange}/>        
+      <SearchBar setPartyField={(e) => setPartyField(e)} setGenderField={(e) => setGenderField(e)} setSortField={(e) => setSortField(e)} searchChange={onSearchChange}/>        
         <Box style={{width:'100%', alignItems:'center'}}>
-        {(filteredHaaks).map((item, index) => {
+        {(filteredHaaks).map((item) => {
                   return(
                     <row >
                     <Button  onClick={() => handleClick(item.id)}>

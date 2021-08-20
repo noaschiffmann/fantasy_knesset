@@ -1,3 +1,8 @@
+/**
+ * the scroll component appears in the building the team page
+ */
+
+
 import React from 'react';
 
 const Scroll = (props) =>{

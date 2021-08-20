@@ -1,3 +1,8 @@
+/**
+ * The sign up overlay
+ */
+
+
 import { React, useState } from 'react';
 import { Button, CssBaseline, TextField, Box, Typography, makeStyles } from '@material-ui/core';
 import Logo from '../important/pictures/logo.png';
@@ -47,6 +52,7 @@ export default function SignIn(props) {
   const [imageSrc, setImageSrc] = useState();
   const [imageUpload, setImageUpload] = useState();
  
+  // showing the image uploaded before approving
   const handleImageSelect = (e) => {
     setImageSrc(URL.createObjectURL(e.target.files[0]))
     setImageUpload(e.target.files[0])
@@ -54,10 +60,12 @@ export default function SignIn(props) {
 
   const classes = useStyles();
 
+  /**
+   * after clicking the approve sign up button, creates the user in backend if valid.
+   */
   function signUp(){
     let uploadData = new FormData()
     uploadData.append('image', imageUpload, userName+'.jpg')
-
     const axios = require('axios');
     axios.get('https://fk-backend.herokuapp.com/registration', {
       params: {
@@ -67,7 +75,7 @@ export default function SignIn(props) {
                 'teamName': teamName, 
               }
     })
-      .then((response) => {
+      .then((response) => {  // if the user details are valid, go onto to upload the image to the backend
         let data = response.data;
         if (data['accepted']){
           current_user.user_name = data['userName']
@@ -83,7 +91,7 @@ export default function SignIn(props) {
             console.log(error)
             alert("יש בעית תקשורת, נסה להתחבר מאוחר יותר")
           })
-          axios.get('https://fk-backend.herokuapp.com/getUsersData')
+          axios.get('https://fk-backend.herokuapp.com/getUsersData')  // if the user is valid, need to update all users 
             .then((response) => {
               for (let i in response.data){
                 all_users[i] = response.data[i]
@@ -135,7 +143,7 @@ export default function SignIn(props) {
           name="email"
           autoComplete="email"
           autoFocus
-          onChange={(e)=>setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />          
         <TextField
           variant="outlined"
@@ -147,7 +155,7 @@ export default function SignIn(props) {
           label="סיסמה"
           type="password"
           id="password"
-          onChange={(e)=>setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <TextField 
           variant="outlined"
@@ -158,7 +166,7 @@ export default function SignIn(props) {
           name="userName"
           label="שם משתמש"
           id="userName"
-          onChange={(e)=>setUserName(e.target.value)}
+          onChange={(e) => setUserName(e.target.value)}
         />
         <TextField 
           variant="outlined"
@@ -169,22 +177,21 @@ export default function SignIn(props) {
           name="teamName"
           label="שם הקבוצה"
           id="teamName"
-          onChange={(e)=>setTeamName(e.target.value)}
+          onChange={(e) => setTeamName(e.target.value)}
         />
         <div className={classes.container} style={{flexDirection: 'row'}}>
-        <div align='center' class='create-book-photo-picker _FCdzt' style={{width: "50%", height: 100}} >
-          <ImageUpload 
-            handleImageSelect={handleImageSelect}
-            imageSrc={imageSrc}
-            setImageSrc={setImageSrc}
-            style={{
-              width: '73%',
-              height: 40,
-              fontFamily: 'Varela Round',
-              borderRadius:'100%'
-            }}
-        />
-        </div>
+          <div align='center' class='create-book-photo-picker _FCdzt' style={{width: "50%", height: 100}} >
+            <ImageUpload 
+              handleImageSelect={handleImageSelect}
+              imageSrc={imageSrc}
+              setImageSrc={setImageSrc}
+              style={{
+                width: '73%',
+                height: 40,
+                fontFamily: 'Varela Round',
+                borderRadius:'100%'}}
+            />
+          </div>
         </div>
         <Button
           fullWidth
@@ -196,7 +203,6 @@ export default function SignIn(props) {
         >
             צור פרופיל
         </Button>
-      
       </form>
     </div>
     <Box mt={1}>

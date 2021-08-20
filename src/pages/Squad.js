@@ -1,3 +1,7 @@
+/**
+ * picking the team page
+ */
+
 import React, { useState, useEffect } from "react";
 import SearchBar from '../components/SearchBar';
 import { makeStyles, Grid, Button, Card } from '@material-ui/core';
@@ -66,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const curHaks = JSON.parse(JSON.stringify(data)).sort(()=>Math.random() - 0.5);
+const curHaks = JSON.parse(JSON.stringify(data)).sort(() => Math.random() - 0.5);  // we want to show the Haks in a random order so the picking will be biased.
 
 const Squad = (props) => {
   const classes = useStyles();
@@ -126,6 +130,9 @@ const Squad = (props) => {
     setId(id);
   }
   
+  /**
+   * send the team to the backend and check if valid
+   */
   function acceptTeam(){
     axios.get('https://fk-backend.herokuapp.com/checkTeam', {
       params: {
@@ -162,7 +169,6 @@ const Squad = (props) => {
     })
   }
 
-
   const [genderField,setGenderField]= useState('');
   const [partyField, setPartyField]= useState('');
   const [sortField, setSortField]= useState('');
@@ -176,10 +182,12 @@ const Squad = (props) => {
     }
   }
 
+  // search filter
   function onSearchChange(event){
     setSearchField(event.target.value);
   }
 
+  // search filter
   function sortHaks(data){
     if (sortField === 2){
       return data.sort(function(a,b){
@@ -192,6 +200,7 @@ const Squad = (props) => {
     }
   } 
   
+  // the Haks filtered
   const filteredHaks = sortHaks(curHaks).filter(data => {
     return data.name.includes(searchField) && data.party.includes(partyField) && data.gender.includes(genderField)});
 
@@ -208,7 +217,7 @@ const Squad = (props) => {
                 <Grid item>
                   <Button style={{padding: '0px 0px'}}>
                     <Button className={classes.cancelButton} 
-                            onClick={()=>handleCancel(value)}>
+                            onClick={() => handleCancel(value)}>
                     <HighlightOffIcon /> 
                     </Button>
                     <Hak id={value} /> 
@@ -230,7 +239,7 @@ const Squad = (props) => {
       </div>
       <div align="center">
       <br></br>
-      <SearchBar setPartyField={(e)=>setPartyField(e)} setGenderField={(e) =>setGenderField(e)} setSortField={(e) =>setSortField(e)} searchChange={onSearchChange}/>        
+      <SearchBar setPartyField={(e) => setPartyField(e)} setGenderField={(e) => setGenderField(e)} setSortField={(e) => setSortField(e)} searchChange={onSearchChange}/>        
 
     </div>
     <br></br>

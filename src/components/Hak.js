@@ -1,7 +1,11 @@
-  
+/**
+ * the main Hak component.
+ */   
+
+
 import React from 'react';
 import GoogleFontLoader from 'react-google-font-loader';
-import { makeStyles, NoSsr, Card, Box, CardMedia, Button } from '@material-ui/core';
+import { makeStyles, NoSsr, Card, Box, CardMedia } from '@material-ui/core';
 import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import data from '../important/data.json';
 
@@ -44,7 +48,7 @@ const useStyles = makeStyles(() => ({
   }));
   
   export const Hak = React.memo(function GalaxyCard({id}) {
-    const mediaStyles = useCoverCardMediaStyles({ bgPosition: 'top'});
+    const mediaStyles = useCoverCardMediaStyles({ bgPosition: 'top' });
     const styles = useStyles();
     return (
       <>
@@ -69,4 +73,5 @@ const useStyles = makeStyles(() => ({
       </>
     );
   });
+
   export default Hak;

@@ -1,3 +1,9 @@
+/**
+ * when you click on a Hak's picture, in any place in the app, this profile appears. 
+ * it has more information about the Hak- his stats, a little bio and a link to his Knesset's website profile page.
+ */
+
+
 import { React, useState } from 'react';
 import { makeStyles, Card, CardActionArea, CardContent, Button, Typography } from '@material-ui/core';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
@@ -25,6 +31,7 @@ const useStyles = makeStyles((theme)=> ({
   },
 }));
 
+// set the dates for the stats graph
 function setLabels(){
   let labels = [];
   let points_array = data[0].points;
